@@ -136,7 +136,13 @@ export default {
               //component: './systemSetting',
               routes: [
                 {
-                  name: '考勤规则管理',
+                  name: '考勤表',
+                  icon: 'smile',
+                  path: '/infomanage/attendancesheetlist',
+                  component: './infoManage/AttendanceSheetList',
+                },
+                {
+                  name: '考勤规则',
                   icon: 'smile',
                   path: '/infomanage/rolelisttablelist',
                   component: './infoManage/RoleListTableList',
@@ -163,6 +169,7 @@ export default {
               path: '/list',
               component: './ListTableList',
             },
+
             {
               component: './404',
             },
