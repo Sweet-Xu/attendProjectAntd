@@ -129,8 +129,28 @@ export default {
             //   ],
             // },
             {
-              path: '/infoManage',
+              path: '/basicinfoManage',
               name: '信息管理',
+              icon: 'crown',
+              //component: './basicinfoManage',
+              routes: [
+                {
+                  name: '课程管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/courselisttablelist',
+                  component: './basicInfoManage/CourseListTableList',
+                },
+                {
+                  name: '班级管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/classlisttablelist',
+                  component: './basicInfoManage/ClassListTableList',
+                },
+              ],
+            },
+            {
+              path: '/infoManage',
+              name: '考勤管理',
               icon: 'crown',
               //component: './systemSetting',
               routes: [
