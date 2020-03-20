@@ -112,23 +112,22 @@ export default {
               name: 'welcome',
               icon: 'smile',
               component: './Welcome',
-            },
-            {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
-              routes: [
-                {
-                  path: '/admin/sub-page',
-                  name: 'sub-page',
-                  icon: 'smile',
-                  component: './Welcome',
-                  authority: ['admin'],
-                },
-              ],
-            },
+            }, // {
+            //   path: '/admin',
+            //   name: 'admin',
+            //   icon: 'crown',
+            //   component: './Admin',
+            //   authority: ['admin'],
+            //   routes: [
+            //     {
+            //       path: '/admin/sub-page',
+            //       name: 'sub-page',
+            //       icon: 'smile',
+            //       component: './Welcome',
+            //       authority: ['admin'],
+            //     },
+            //   ],
+            // },
             {
               path: '/infoManage',
               name: '信息管理',
@@ -140,6 +139,12 @@ export default {
                   icon: 'smile',
                   path: '/infomanage/attendancesheetlist',
                   component: './infoManage/AttendanceSheetList',
+                },
+                {
+                  name: '考勤记录',
+                  icon: 'smile',
+                  path: '/infomanage/arecordlisttablelist',
+                  component: './infoManage/ARecordListTableList',
                 },
                 {
                   name: '考勤规则',
@@ -169,7 +174,6 @@ export default {
               path: '/list',
               component: './ListTableList',
             },
-
             {
               component: './404',
             },
