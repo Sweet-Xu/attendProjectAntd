@@ -79,31 +79,38 @@ const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '规则名称',
+      title: '用户名',
       dataIndex: 'name',
     },
     {
-      title: '描述',
+      title: '性别',
       dataIndex: 'desc',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      renderText: (val: string) => `${val} 万`,
+      title: '类型',
+      dataIndex: 'userType',
+      valueEnum: {
+        0: { text: '管理员' },
+        1: { text: '教师' },
+        2: { text: '学生' },
+      },
     },
     {
       title: '状态',
       dataIndex: 'status',
       valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
+        0: { text: '有效', status: 'Success' },
+        1: { text: '锁定', status: 'Error' },
       },
     },
     {
-      title: '上次调度时间',
+      title: '创建时间',
+      dataIndex: 'updatedAt',
+      sorter: true,
+      valueType: 'dateTime',
+    },
+    {
+      title: '上次登录时间',
       dataIndex: 'updatedAt',
       sorter: true,
       valueType: 'dateTime',

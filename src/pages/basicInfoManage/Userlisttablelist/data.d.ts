@@ -8,6 +8,9 @@ export interface TableListItem {
   owner: string;
   desc: string;
   callNo: number;
+
+  userType: number;
+
   status: number;
   updatedAt: Date;
   createdAt: Date;

@@ -18,7 +18,7 @@ for (let i = 0; i < 10; i += 1) {
     name: `TradeCode ${i}`,
     title: `一个任务名称 ${i}`,
     owner: '曲丽丽',
-    desc: '这是一段描述',
+    desc: '这是一段2描述222',
     callNo: Math.floor(Math.random() * 1000),
     status: Math.floor(Math.random() * 10) % 4,
     updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
@@ -142,6 +142,6 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
 }
 
 export default {
-  'GET /api/rule': getRule,
+  'GET /api/rule2': getRule,
   'POST /api/rule': postRule,
 };
