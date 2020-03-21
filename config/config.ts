@@ -129,6 +129,26 @@ export default {
             //   ],
             // },
             {
+              path: '/statisticalAnalysis',
+              name: '统计分析',
+              icon: 'crown',
+              //component: './systemSetting',
+              routes: [
+                {
+                  name: '工作台',
+                  icon: 'smile',
+                  path: '/statisticalanalysis/dashboardworkplace',
+                  component: './statisticalAnalysis/DashboardWorkplace',
+                },
+                {
+                  name: '分析页',
+                  icon: 'smile',
+                  path: '/statisticalanalysis/dashboardanalysis',
+                  component: './statisticalAnalysis/DashboardAnalysis',
+                },
+              ],
+            },
+            {
               path: '/basicinfoManage',
               name: '基础信息',
               icon: 'crown',
@@ -205,6 +225,12 @@ export default {
               icon: 'table',
               path: '/list',
               component: './ListTableList',
+            },
+            {
+              name: '个人设置',
+              icon: 'smile',
+              path: '/accountsettings',
+              component: './AccountSettings',
             },
             {
               component: './404',
