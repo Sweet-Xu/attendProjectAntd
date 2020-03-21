@@ -130,10 +130,22 @@ export default {
             // },
             {
               path: '/basicinfoManage',
-              name: '信息管理',
+              name: '基础信息',
               icon: 'crown',
               //component: './basicinfoManage',
               routes: [
+                {
+                  name: '学生管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/studentslisttablelist',
+                  component: './basicInfoManage/StudentsListTableList',
+                },
+                {
+                  name: '教师管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/teacherlisttablelist',
+                  component: './basicInfoManage/TeacherListTableList',
+                },
                 {
                   name: '课程管理',
                   icon: 'smile',
