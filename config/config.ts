@@ -155,6 +155,12 @@ export default {
               //component: './basicinfoManage',
               routes: [
                 {
+                  name: '用户管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/userlisttablelist',
+                  component: './basicInfoManage/Userlisttablelist',
+                },
+                {
                   name: '学生管理',
                   icon: 'smile',
                   path: '/basicinfomanage/studentslisttablelist',
