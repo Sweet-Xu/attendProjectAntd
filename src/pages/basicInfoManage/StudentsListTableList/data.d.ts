@@ -6,6 +6,13 @@ export interface TableListItem {
   name: string;
   title: string;
   owner: string;
+
+  studentId:string,
+  studentName:string
+  studentGender:number,
+  classId:number;
+  collegeName:string;
+
   desc: string;
   callNo: number;
   status: number;

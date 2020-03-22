@@ -9,7 +9,7 @@ export interface TableListItem {
 
   teacherId:string;
   teacherName:string;
-  gender:string;
+  teacherGender:string;
   deptName:string;
 
   desc: string;
