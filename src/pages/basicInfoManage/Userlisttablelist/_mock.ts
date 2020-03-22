@@ -24,8 +24,8 @@ for (let i = 0; i < 10; i += 1) {
     userType: Math.floor(Math.random() * 10) % 3,
 
     status: Math.floor(Math.random() * 10) % 4,
-    updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
-    createdAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
+    updatedAt: new Date(`2019-03-${Math.floor(i / 2) + 20}`),
+    createdAt: new Date(`2019-03-${Math.floor(i / 2) + 20}`),
     progress: Math.ceil(Math.random() * 100),
   });
 }

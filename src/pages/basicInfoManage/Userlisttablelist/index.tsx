@@ -99,8 +99,10 @@ const TableList: React.FC<{}> = () => {
       title: '状态',
       dataIndex: 'status',
       valueEnum: {
-        0: { text: '有效', status: 'Success' },
-        1: { text: '锁定', status: 'Error' },
+        0: { text: '锁定', status: 'Success' },
+        1: { text: '锁定', status: 'Success' },
+        2: { text: '有效', status: 'Error' },
+        3: { text: '有效', status: 'Error' },
       },
     },
     {
@@ -127,10 +129,10 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            操作
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          {/*<a href="">订阅警报</a>*/}
         </>
       ),
     },
