@@ -79,35 +79,43 @@ const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '规则名称',
-      dataIndex: 'name',
+      title: '教师工号',
+      dataIndex: 'teacherId',
     },
     {
-      title: '描述',
-      dataIndex: 'desc',
+      title: '教师名',
+      dataIndex: 'teacherName',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      renderText: (val: string) => `${val} 万`,
+      title: '性别',
+      dataIndex: 'gender',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
-      },
+      title: '部门',
+      dataIndex: 'deptName',
     },
-    {
-      title: '上次调度时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
-      valueType: 'dateTime',
-    },
+    // {
+    //   title: '服务调用次数',
+    //   dataIndex: 'callNo',
+    //   sorter: true,
+    //   renderText: (val: string) => `${val} 万`,
+    // },
+    // {
+    //   title: '状态',
+    //   dataIndex: 'status',
+    //   valueEnum: {
+    //     0: { text: '关闭', status: 'Default' },
+    //     1: { text: '运行中', status: 'Processing' },
+    //     2: { text: '已上线', status: 'Success' },
+    //     3: { text: '异常', status: 'Error' },
+    //   },
+    // },
+    // {
+    //   title: '上次调度时间',
+    //   dataIndex: 'updatedAt',
+    //   sorter: true,
+    //   valueType: 'dateTime',
+    // },
     {
       title: '操作',
       dataIndex: 'option',

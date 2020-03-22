@@ -79,35 +79,67 @@ const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '规则名称',
+      title: '课程名',
       dataIndex: 'name',
     },
     {
-      title: '描述',
+      title: '实验室',
       dataIndex: 'desc',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      renderText: (val: string) => `${val} 万`,
+      title: '任课老师',
+      dataIndex: 'desc',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
-      },
-    },
-    {
-      title: '上次调度时间',
+      title: '上课时间',
       dataIndex: 'updatedAt',
       sorter: true,
       valueType: 'dateTime',
     },
+    {
+      title: '下课时间',
+      dataIndex: 'updatedAt',
+      sorter: true,
+      valueType: 'dateTime',
+    },
+    {
+      title: '开始周',
+      dataIndex: 'desc',
+    },
+    {
+      title: '结束周',
+      dataIndex: 'desc',
+    },
+    {
+      title: '学期',
+      dataIndex: 'desc',
+    },
+    {
+      title: '学年',
+      dataIndex: 'desc',
+    },
+    // {
+    //   title: '调用次数',
+    //   dataIndex: 'callNo',
+    //   sorter: true,
+    //   renderText: (val: string) => `${val} 万`,
+    // },
+    // {
+    //   title: '状态',
+    //   dataIndex: 'status',
+    //   valueEnum: {
+    //     0: { text: '关闭', status: 'Default' },
+    //     1: { text: '运行中', status: 'Processing' },
+    //     2: { text: '已上线', status: 'Success' },
+    //     3: { text: '异常', status: 'Error' },
+    //   },
+    // },
+    // {
+    //   title: '上次调度时间',
+    //   dataIndex: 'updatedAt',
+    //   sorter: true,
+    //   valueType: 'dateTime',
+    // },
     {
       title: '操作',
       dataIndex: 'option',
