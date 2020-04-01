@@ -225,8 +225,7 @@ export default {
                 //   component: './systemSetting/FormBasicForm',
                 // },
               ],
-            },
-            // {
+            }, // {
             //   name: 'list.table-list',
             //   icon: 'table',
             //   path: '/list',
@@ -237,6 +236,12 @@ export default {
               icon: 'smile',
               path: '/accountsettings',
               component: './AccountSettings',
+            },
+            {
+              name: '查询表格',
+              icon: 'smile',
+              path: '/booktable',
+              component: './BookTable',
             },
             {
               component: './404',
@@ -274,7 +279,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string,
+      localName: string
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||
