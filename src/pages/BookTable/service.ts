@@ -24,6 +24,7 @@ export async function addBook(book: TableListParams) {
   });
 }
 
+
 export async function queryRule(params?: TableListParams) {
   return request('/api/rule', {
     params,

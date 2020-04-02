@@ -207,8 +207,8 @@ export default {
                 {
                   name: '考勤规则',
                   icon: 'smile',
-                  path: '/infomanage/rolelisttablelist',
-                  component: './infoManage/RoleListTableList',
+                  path: '/infomanage/rulelisttablelist',
+                  component: './infoManage/RuleListTableList',
                 },
               ],
             },

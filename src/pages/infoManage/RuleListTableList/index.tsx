@@ -6,7 +6,7 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryAttendRule, updateAttendRule, addAttendRule, removeAttendRule } from './service';
 
 /**
  * 添加节点
@@ -15,8 +15,16 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({
-      desc: fields.desc,
+    await addAttendRule({
+      ruleName: fields.ruleName,
+      courseStartTime:fields.courseStartTime,
+      courseEndTime:fields.courseEndTime,
+      checkStartTime:fields.checkStartTime,
+      checkEndTime:fields.checkEndTime,
+      normalLateMin:fields.normalLateMin,
+      normalLeaveEarlyMin:fields.normalLeaveEarlyMin,
+      normalInOutNum:fields.normalInOutNum,
+      normalStayOutTime:fields.normalStayOutTime,
     });
     hide();
     message.success('添加成功');
@@ -35,18 +43,24 @@ const handleAdd = async (fields: FormValueType) => {
 const handleUpdate = async (fields: FormValueType) => {
   const hide = message.loading('正在配置');
   try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+    await updateAttendRule({
+      ruleId:fields.ruleId,
+      ruleName: fields.ruleName,
+      courseStartTime:fields.courseStartTime,
+      courseEndTime:fields.courseEndTime,
+      checkStartTime:fields.checkStartTime,
+      checkEndTime:fields.checkEndTime,
+      normalLateMin:fields.normalLateMin,
+      normalLeaveEarlyMin:fields.normalLeaveEarlyMin,
+      normalInOutNum:fields.normalInOutNum,
+      normalStayOutTime:fields.normalStayOutTime,
     });
     hide();
-
-    message.success('配置成功');
+    message.success('更新成功');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('更新失败请重试！');
     return false;
   }
 };
@@ -59,9 +73,11 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
+    let ruleIds = selectedRows.map(row => row.ruleId);
+    for (let i=0;i<ruleIds.length;i++) {
+    await removeAttendRule(
+    {ruleId: ruleIds[i]});
+    };
     hide();
     message.success('删除成功，即将刷新');
     return true;
@@ -79,34 +95,52 @@ const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
+      title: '规则编号',
+      dataIndex: 'ruleId',
+    },
+    {
       title: '规则名称',
-      dataIndex: 'name',
+      dataIndex: 'ruleName',
     },
     {
-      title: '描述',
-      dataIndex: 'desc',
+      title: '课程开始时间',
+      dataIndex: 'courseStartTime',
+      valueType: "time",
+      render: (_, record) => {return record.courseStartTime}
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      renderText: (val: string) => `${val} 万`,
+      title: '课程结束时间',
+      dataIndex: 'courseEndTime',
+      valueType: "time",
+      render: (_, record) => {return record.courseEndTime}
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
-      },
+      title: '可开始打卡时间',
+      dataIndex: 'checkStartTime',
+      valueType: "time",
+      render: (_, record) => {return record.checkStartTime}
     },
     {
-      title: '上次调度时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
-      valueType: 'dateTime',
+      title: '打卡已结束时间',
+      dataIndex: 'checkEndTime',
+      valueType: "time",
+      render: (_, record) => {return record.checkEndTime}
+    },
+    {
+      title: '正常最晚迟到时间',
+      dataIndex: 'normalLateMin',
+    },
+    {
+      title: '正常最早离开时间',
+      dataIndex: 'normalLeaveEarlyMin',
+    },
+    {
+      title: '正常进出次数',
+      dataIndex: 'normalInOutNum',
+    },
+    {
+      title: '正常待在教室外时间',
+      dataIndex: 'normalStayOutTime',
     },
     {
       title: '操作',
@@ -120,10 +154,10 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            更新
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          {/*<a href="">订阅警报</a>*/}
         </>
       ),
     },
@@ -134,7 +168,7 @@ const TableList: React.FC<{}> = () => {
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="ruleId"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
@@ -170,7 +204,8 @@ const TableList: React.FC<{}> = () => {
             </span>
           </div>
         )}
-        request={params => queryRule(params)}
+
+        request={params => queryAttendRule(params)}
         columns={columns}
         rowSelection={{}}
       />
