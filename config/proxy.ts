@@ -17,6 +17,11 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/api/attendItem': {
+      target: 'http://localhost:8284',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
   },
   test: {
     '/api/': {

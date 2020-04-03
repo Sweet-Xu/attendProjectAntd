@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Modal } from 'antd';
+import {DatePicker, Form, Input, Modal} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -21,7 +21,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
   return (
     <Modal
       destroyOnClose
-      title="新建规则"
+      title="新建考勤记录"
       visible={modalVisible}
       onOk={okHandle}
       onCancel={() => onCancel()}
@@ -30,9 +30,43 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="描述"
-          name="desc"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          label="考勤表编号"
+          name="attendId"
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="学生学号"
+          name="studentId"
+          //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="打卡时间"
+          name="attendTime"
+          //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          {/*<DatePicker*/}
+          {/*  style={{ width: '100%' }}*/}
+          {/*  //showTime*/}
+          {/*  showTime={{ format: 'HH:mm:ss' }}*/}
+          {/*  format="YYYY-MM-DD HH:mm:ss"*/}
+          {/*  placeholder="选择开始时间"*/}
+          {/*/>*/}
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="考勤结果"
+          name="attendResult"
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>

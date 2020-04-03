@@ -6,7 +6,7 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryAttendItem, updateAttendItem, addAttendItem, removeAttendItem } from './service';
 
 /**
  * 添加节点
@@ -15,8 +15,12 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({
-      desc: fields.desc,
+    await addAttendItem({
+      attendItemId:fields.attendItemId,
+      attendId:fields.attendId,
+      studentId:fields.studentId,
+      attendTime:fields.attendTime,
+      attendResult:fields.attendResult,
     });
     hide();
     message.success('添加成功');
@@ -35,10 +39,12 @@ const handleAdd = async (fields: FormValueType) => {
 const handleUpdate = async (fields: FormValueType) => {
   const hide = message.loading('正在配置');
   try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+    await updateAttendItem({
+      attendItemId:fields.attendItemId,
+      attendId:fields.attendId,
+      studentId:fields.studentId,
+      attendTime:fields.attendTime,
+      attendResult:fields.attendResult,
     });
     hide();
 
@@ -59,9 +65,12 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
+    let attendItemIds = selectedRows.map(row => row.attendItemId);
+    for (let i=0;i<attendItemIds.length;i++) {
+      await removeAttendItem({
+        attendItemId: attendItemIds[i]
+      });
+    }
     hide();
     message.success('删除成功，即将刷新');
     return true;
@@ -79,34 +88,32 @@ const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '规则名称',
-      dataIndex: 'name',
+      title: '考勤记录编号',
+      dataIndex: 'attendItemId',
     },
     {
-      title: '描述',
-      dataIndex: 'desc',
+      title: '所在考勤表编号',
+      dataIndex: 'attendId',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      renderText: (val: string) => `${val} 万`,
+      title: '学生学号',
+      dataIndex: 'studentId',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
-      },
-    },
-    {
-      title: '上次调度时间',
-      dataIndex: 'updatedAt',
+      title: '打卡时间',
+      dataIndex: 'attendTime',
       sorter: true,
       valueType: 'dateTime',
+    },
+    {
+      title: '考勤结果',
+      dataIndex: 'attendResult',
+      valueEnum: {
+        0: { text: '迟到', status: 'Default' },
+        1: { text: '正常', status: 'Processing' },
+        2: { text: '早退', status: 'Success' },
+        3: { text: '旷课', status: 'Error' },
+      },
     },
     {
       title: '操作',
@@ -120,7 +127,7 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            更新
           </a>
           <Divider type="vertical" />
           <a href="">订阅警报</a>
@@ -134,7 +141,7 @@ const TableList: React.FC<{}> = () => {
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="attendItemId"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
@@ -170,7 +177,7 @@ const TableList: React.FC<{}> = () => {
             </span>
           </div>
         )}
-        request={params => queryRule(params)}
+        request={params => queryAttendItem(params)}
         columns={columns}
         rowSelection={{}}
       />
