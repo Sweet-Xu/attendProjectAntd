@@ -236,12 +236,6 @@ export default {
               icon: 'smile',
               path: '/accountsettings',
               component: './AccountSettings',
-            },
-            {
-              name: '空白页面',
-              icon: 'smile',
-              path: '/emptypage',
-              component: './EmptyPage',
             }, // {
             //   name: '查询表格',
             //   icon: 'smile',
