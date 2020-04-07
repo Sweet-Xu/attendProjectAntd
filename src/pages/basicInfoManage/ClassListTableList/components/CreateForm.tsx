@@ -30,10 +30,41 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="描述"
-          name="desc"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          label="班级号"
+          name="classId"
+          //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
+
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="所属学院"
+          name="collegeName"
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="教师工号"
+          name="teacherId"
+          //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="班级总人数"
+          name="classPeopleNum"
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+
           <Input placeholder="请输入" />
         </FormItem>
       </Form>

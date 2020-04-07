@@ -6,7 +6,7 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryTeacher, updateTeacher, addTeacher, removeTeacher } from './service';
 
 /**
  * 添加节点
@@ -15,8 +15,14 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({
-      desc: fields.desc,
+    await addTeacher({
+      teacherId:fields.teacherId,
+      userId: fields.userId,
+      deptName:fields.deptName,
+      teacherName:fields.teacherName,
+      teacherGender:fields.teacherGender,
+      teacherEmail:fields.teacherEmail,
+      teacherQQ: fields.teacherQQ,
     });
     hide();
     message.success('添加成功');
@@ -33,20 +39,24 @@ const handleAdd = async (fields: FormValueType) => {
  * @param fields
  */
 const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('正在更新');
   try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+    await updateTeacher({
+      teacherId:fields.teacherId,
+      userId: fields.userId,
+      deptName:fields.deptName,
+      teacherName:fields.teacherName,
+      teacherGender:fields.teacherGender,
+      teacherEmail:fields.teacherEmail,
+      teacherQQ: fields.teacherQQ,
     });
     hide();
 
-    message.success('配置成功');
+    message.success('更新成功');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('更新失败请重试！');
     return false;
   }
 };
@@ -59,9 +69,12 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
+    let teacherIds = selectedRows.map(row => row.teacherId);
+    for (let i=0;i<teacherIds.length;i++) {
+      await removeTeacher({
+        teacherId: teacherIds[i]
+      });
+    }
     hide();
     message.success('删除成功，即将刷新');
     return true;
@@ -83,39 +96,29 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'teacherId',
     },
     {
-      title: '教师名',
+      title: '所在部门',
+      dataIndex: 'deptName',
+    },
+    {
+      title: '教师姓名',
       dataIndex: 'teacherName',
     },
     {
       title: '性别',
-      dataIndex: 'gender',
+      dataIndex: 'teacherGender',
+      valueEnum: {
+        0: { text: '女', },
+        1: { text: '男'},
+      }
     },
     {
-      title: '部门',
-      dataIndex: 'deptName',
+      title: '电子邮箱',
+      dataIndex: 'teacherEmail',
     },
-    // {
-    //   title: '服务调用次数',
-    //   dataIndex: 'callNo',
-    //   sorter: true,
-    //   renderText: (val: string) => `${val} 万`,
-    // },
-    // {
-    //   title: '状态',
-    //   dataIndex: 'status',
-    //   valueEnum: {
-    //     0: { text: '关闭', status: 'Default' },
-    //     1: { text: '运行中', status: 'Processing' },
-    //     2: { text: '已上线', status: 'Success' },
-    //     3: { text: '异常', status: 'Error' },
-    //   },
-    // },
-    // {
-    //   title: '上次调度时间',
-    //   dataIndex: 'updatedAt',
-    //   sorter: true,
-    //   valueType: 'dateTime',
-    // },
+    {
+      title: 'QQ号',
+      dataIndex: 'teacherQQ',
+    },
     {
       title: '操作',
       dataIndex: 'option',
@@ -128,10 +131,9 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            更新
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
         </>
       ),
     },
@@ -142,7 +144,7 @@ const TableList: React.FC<{}> = () => {
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="teacherId"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
@@ -178,7 +180,7 @@ const TableList: React.FC<{}> = () => {
             {/*</span>*/}
           </div>
         )}
-        request={params => queryRule(params)}
+        request={params => queryTeacher(params)}
         columns={columns}
         rowSelection={{}}
       />

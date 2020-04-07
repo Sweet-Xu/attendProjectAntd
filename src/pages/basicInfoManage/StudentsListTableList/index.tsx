@@ -6,7 +6,7 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryStudent, updateStudent, addStudent, removeStudent } from './service';
 
 /**
  * 添加节点
@@ -15,8 +15,14 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({
-      desc: fields.desc,
+    await addStudent({
+      studentId:fields.studentId,
+      classId: fields.classId,
+      studentName:fields.studentName,
+      studentGender:fields.studentGender,
+      studentEmail:fields.studentEmail,
+      studentQQ:fields.studentQQ,
+      userId: fields.userId,
     });
     hide();
     message.success('添加成功');
@@ -33,20 +39,23 @@ const handleAdd = async (fields: FormValueType) => {
  * @param fields
  */
 const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('正在更新');
   try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+    await updateStudent({
+      studentId:fields.studentId,
+      classId: fields.classId,
+      studentName:fields.studentName,
+      studentGender:fields.studentGender,
+      studentEmail:fields.studentEmail,
+      studentQQ:fields.studentQQ,
+      userId: fields.userId,
     });
     hide();
-
-    message.success('配置成功');
+    message.success('更新成功');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('更新失败请重试！');
     return false;
   }
 };
@@ -59,9 +68,12 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
+    let studentIds = selectedRows.map(row => row.studentId);
+    for (let i=0;i<studentIds.length;i++) {
+      await removeStudent({
+        studentId: studentIds[i]
+      });
+    }
     hide();
     message.success('删除成功，即将刷新');
     return true;
@@ -83,55 +95,29 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'studentId',
     },
     {
-      title: '姓名',
-      dataIndex: 'studentName',
-    },
-    {
-      title: '性别',
-      dataIndex: 'studentGender',
-      valueEnum:{
-        0: { text: '男'},
-        1: { text: '女' },
-      }
-    },
-    {
       title: '所在班级',
       dataIndex: 'classId',
     },
     {
-      title: '所在学院',
-      dataIndex: 'collegeName',
+      title: '学生姓名',
+        dataIndex: 'studentName',
     },
-    // {
-    //   title: '规则名称',
-    //   dataIndex: 'name',
-    // },
-    // {
-    //   title: '描述',
-    //   dataIndex: 'desc',
-    // },
-    // {
-    //   title: '服务调用次数',
-    //   dataIndex: 'callNo',
-    //   sorter: true,
-    //   renderText: (val: string) => `${val} 万`,
-    // },
-    // {
-    //   title: '状态',
-    //   dataIndex: 'status',
-    //   valueEnum: {
-    //     0: { text: '关闭', status: 'Default' },
-    //     1: { text: '运行中', status: 'Processing' },
-    //     2: { text: '已上线', status: 'Success' },
-    //     3: { text: '异常', status: 'Error' },
-    //   },
-    // },
-    // {
-    //   title: '上次调度时间',
-    //   dataIndex: 'updatedAt',
-    //   sorter: true,
-    //   valueType: 'dateTime',
-    // },
+      {
+        title: '性别',
+        dataIndex: 'studentGender',
+        valueEnum:{
+          0: { text: '女'},
+          1: { text: '男' },
+        }
+      },
+      {
+        title: '电子邮箱',
+        dataIndex: 'studentEmail',
+      },
+    {
+      title: 'QQ号',
+        dataIndex: 'studentQQ',
+    },
     {
       title: '操作',
       dataIndex: 'option',
@@ -144,10 +130,9 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            更新
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
         </>
       ),
     },
@@ -158,7 +143,7 @@ const TableList: React.FC<{}> = () => {
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="studentId"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
@@ -194,7 +179,7 @@ const TableList: React.FC<{}> = () => {
         //     </span>
         //   </div>
         // )}
-        request={params => queryRule(params)}
+        request={params => queryStudent(params)}
         columns={columns}
         rowSelection={{}}
       />

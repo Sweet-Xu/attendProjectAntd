@@ -15,6 +15,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
   const { modalVisible, onSubmit: handleAdd, onCancel } = props;
   const okHandle = async () => {
     const fieldsValue = await form.validateFields();
+
     form.resetFields();
     handleAdd(fieldsValue);
   };

@@ -1,17 +1,8 @@
 export interface TableListItem {
-  key: number;
-  disabled?: boolean;
-  href: string;
-  avatar: string;
-  name: string;
-  title: string;
-  owner: string;
-  desc: string;
-  callNo: number;
-  status: number;
-  updatedAt: Date;
-  createdAt: Date;
-  progress: number;
+  classId: number;
+  collegeName:string;
+  teacherId:string;
+  classPeopleNum: number;
 }
 
 export interface TableListPagination {
@@ -26,11 +17,8 @@ export interface TableListData {
 }
 
 export interface TableListParams {
-  sorter?: string;
-  status?: string;
-  name?: string;
-  desc?: string;
-  key?: number;
-  pageSize?: number;
-  currentPage?: number;
+  classId?: number;
+  collegeName?: string;
+  teacherId?: string;
+  classPeopleNum?: number;
 }

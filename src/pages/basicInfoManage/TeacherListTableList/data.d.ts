@@ -1,23 +1,11 @@
 export interface TableListItem {
-  key: number;
-  disabled?: boolean;
-  href: string;
-  avatar: string;
-  name: string;
-  title: string;
-  owner: string;
-
   teacherId:string;
+  userId: number;
+  deptName:string;
   teacherName:string;
   teacherGender:string;
-  deptName:string;
-
-  desc: string;
-  callNo: number;
-  status: number;
-  updatedAt: Date;
-  createdAt: Date;
-  progress: number;
+  teacherEmail:string;
+  teacherQQ: string;
 }
 
 export interface TableListPagination {
@@ -32,11 +20,11 @@ export interface TableListData {
 }
 
 export interface TableListParams {
-  sorter?: string;
-  status?: string;
-  name?: string;
-  desc?: string;
-  key?: number;
-  pageSize?: number;
-  currentPage?: number;
+  teacherId?:string;
+  userId?: number;
+  deptName?:string;
+  teacherName?:string;
+  teacherGender?:string;
+  teacherEmail?:string;
+  teacherQQ?:string;
 }

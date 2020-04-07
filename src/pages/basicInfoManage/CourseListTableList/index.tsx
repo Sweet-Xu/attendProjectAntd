@@ -152,10 +152,9 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            更新
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
         </>
       ),
     },

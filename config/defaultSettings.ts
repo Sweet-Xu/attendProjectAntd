@@ -55,7 +55,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: '实验室考勤系统',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;

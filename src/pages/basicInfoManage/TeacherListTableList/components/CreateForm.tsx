@@ -28,28 +28,28 @@ const CreateForm: React.FC<CreateFormProps> = props => {
       onCancel={() => onCancel()}
     >
       <Form form={form}>
+      <FormItem
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 15 }}
+        label="教师工号"
+        name="teacherId"
+        rules={[{ required: true, message: '请输入至少六个字符的规则描述！', min: 6 }]}
+      >
+        <Input placeholder="请输入" />
+      </FormItem>
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="描述"
-          name="desc"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          label="部门名称"
+          name="deptName"
+          rules={[{ required: true, message: '请输入至少三个字符的规则描述！', min: 3}]}
         >
           <Input placeholder="请输入" />
         </FormItem>
-          <FormItem
-            labelCol={{ span: 5 }}
-            wrapperCol={{ span: 15 }}
-            label="教师工号"
-            name="teacherId"
-            rules={[{ required: true, message: '请输入至少六个字符的规则描述！', min: 6 }]}
-          >
-            <Input placeholder="请输入" />
-          </FormItem>
             <FormItem
               labelCol={{ span: 5 }}
               wrapperCol={{ span: 15 }}
-              label="教师名"
+              label="教师姓名"
               name="teacherName"
               rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
             >
@@ -59,25 +59,33 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
           label="性别"
-          name="gender"
+          name="teacherGender"
           // rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
         >
           {/*<Radio.Group onChange={this.onChange} value={this.state.value}>*/}
           <Radio.Group >
             <Radio value={1}>男</Radio>
-            <Radio value={2}>女</Radio>
+            <Radio value={0}>女</Radio>
           </Radio.Group>
         </FormItem>
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="部门"
-          name="deptName"
+          label="电子邮箱"
+          name="teacherEmail"
           rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>
-
+      <FormItem
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 15 }}
+        label="QQ号"
+        name="teacherQQ"
+        rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
+      >
+        <Input placeholder="请输入" />
+      </FormItem>
       </Form>
     </Modal>
   );

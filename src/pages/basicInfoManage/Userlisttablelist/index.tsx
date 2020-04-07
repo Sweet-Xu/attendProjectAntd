@@ -6,7 +6,7 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryUser, updateUser, addUser, removeUser } from './service';
 
 /**
  * 添加节点
@@ -15,8 +15,14 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({
-      desc: fields.desc,
+    await addUser({
+      userId:fields.userId,
+      username: fields.username,
+      password:fields.password,
+      userType:fields.userType,
+      userCreateTime:fields.userCreateTime,
+      lastLoginTime:fields.lastLoginTime,
+      userStatus: fields.userStatus,
     });
     hide();
     message.success('添加成功');
@@ -33,20 +39,24 @@ const handleAdd = async (fields: FormValueType) => {
  * @param fields
  */
 const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('正在更新');
   try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+    await updateUser({
+      userId:fields.userId,
+      username: fields.username,
+      password:fields.password,
+      userType:fields.userType,
+      userCreateTime:fields.userCreateTime,
+      lastLoginTime:fields.lastLoginTime,
+      userStatus: fields.userStatus,
     });
     hide();
 
-    message.success('配置成功');
+    message.success('更新成功');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('更新失败请重试！');
     return false;
   }
 };
@@ -59,9 +69,12 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
+    let userIds = selectedRows.map(row => row.userId);
+    for (let i=0;i<userIds.length;i++) {
+      await removeUser({
+        userId: userIds[i]
+      });
+    }
     hide();
     message.success('删除成功，即将刷新');
     return true;
@@ -80,11 +93,7 @@ const TableList: React.FC<{}> = () => {
   const columns: ProColumns<TableListItem>[] = [
     {
       title: '用户名',
-      dataIndex: 'name',
-    },
-    {
-      title: '性别',
-      dataIndex: 'desc',
+      dataIndex: 'username',
     },
     {
       title: '类型',
@@ -96,26 +105,24 @@ const TableList: React.FC<{}> = () => {
       },
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      valueEnum: {
-        0: { text: '锁定', status: 'Success' },
-        1: { text: '锁定', status: 'Success' },
-        2: { text: '有效', status: 'Error' },
-        3: { text: '有效', status: 'Error' },
-      },
-    },
-    {
       title: '创建时间',
-      dataIndex: 'updatedAt',
+      dataIndex: 'userCreateTime',
       sorter: true,
       valueType: 'dateTime',
     },
     {
       title: '上次登录时间',
-      dataIndex: 'updatedAt',
+      dataIndex: 'lastLoginTime',
       sorter: true,
       valueType: 'dateTime',
+    },
+    {
+      title: '状态',
+      dataIndex: 'userStatus',
+      valueEnum: {
+        0: { text: '锁定', status: 'Error' },
+        1: { text: '有效', status: 'Success' },
+      },
     },
     {
       title: '操作',
@@ -129,7 +136,7 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            操作
+            更新
           </a>
           <Divider type="vertical" />
           {/*<a href="">订阅警报</a>*/}
@@ -143,7 +150,7 @@ const TableList: React.FC<{}> = () => {
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="userId"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
@@ -174,12 +181,12 @@ const TableList: React.FC<{}> = () => {
         tableAlertRender={(selectedRowKeys, selectedRows) => (
           <div>
             已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
-            <span>
-              服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
-            </span>
+            {/*<span>*/}
+            {/*  服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万*/}
+            {/*</span>*/}
           </div>
         )}
-        request={params => queryRule(params)}
+        request={params => queryUser(params)}
         columns={columns}
         rowSelection={{}}
       />

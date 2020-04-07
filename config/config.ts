@@ -238,11 +238,16 @@ export default {
               component: './AccountSettings',
             },
             {
-              name: '查询表格',
+              name: '空白页面',
               icon: 'smile',
-              path: '/booktable',
-              component: './BookTable',
-            },
+              path: '/emptypage',
+              component: './EmptyPage',
+            }, // {
+            //   name: '查询表格',
+            //   icon: 'smile',
+            //   path: '/booktable',
+            //   component: './BookTable',
+            // },
             {
               component: './404',
             },

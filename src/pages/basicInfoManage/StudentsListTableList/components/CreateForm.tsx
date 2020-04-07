@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Modal,Radio } from 'antd';
+import {number} from "prop-types";
 
 const FormItem = Form.Item;
 
@@ -32,16 +33,25 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           wrapperCol={{ span: 15 }}
           label="学号"
           name="studentId"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="姓名"
+          label="所在班级"
+          name="classId"
+         // rules={[{ required: true, message: '请输入数字！'}]} 要设置只能为整型数的规则
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="学生姓名"
           name="studentName"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>
@@ -59,8 +69,8 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="所在班级"
-          name="className"
+          label="电子邮箱"
+          name="studentEmail"
           rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
@@ -68,8 +78,8 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="所在学院"
-          name="collegeName"
+          label="QQ号"
+          name="studentQQ"
           rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
