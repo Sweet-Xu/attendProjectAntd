@@ -37,6 +37,16 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/api/courseTable': {
+      target: 'http://localhost:8284',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
+    '/api': {
+      target: 'http://localhost:8284',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
   },
   test: {
     '/api/': {

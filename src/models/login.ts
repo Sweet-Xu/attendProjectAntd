@@ -6,6 +6,8 @@ import { router } from 'umi';
 import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+import { AccountLogout } from '@/services/login';
+import {message} from "antd";
 
 export interface StateType {
   status?: 'ok' | 'error';
@@ -61,16 +63,26 @@ const Model: LoginModelType = {
     },
 
     logout() {
-      const { redirect } = getPageQuery();
-      // Note: There may be security issues, please note
-      if (window.location.pathname !== '/user/login' && !redirect) {
-        router.replace({
-          pathname: '/user/login',
-          search: stringify({
-            redirect: window.location.href,
-          }),
-        });
-      }
+      AccountLogout().then((res) => {
+        if(res.status == 'ok') {
+          const { redirect } = getPageQuery();
+          // Note: There may be security issues, please note
+          //调用等处方法
+          if (window.location.pathname !== '/user/login' && !redirect) {
+            router.replace({
+              pathname: '/user/login',
+              search: stringify({
+                redirect: window.location.href,
+              }),
+            });
+          }
+        }
+        else {
+          message.error("登出失败");
+        }
+      })
+
+
     },
   },
 
