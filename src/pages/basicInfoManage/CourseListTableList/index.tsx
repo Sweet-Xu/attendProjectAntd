@@ -6,7 +6,7 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryCourse, updateCourse, addCourse, removeCourse } from './service';
 
 /**
  * 添加节点
@@ -15,8 +15,20 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({
-      desc: fields.desc,
+    await addCourse({
+      courseId:fields.courseId,
+      classId: fields.classId,
+      classroomId:fields.classroomId,
+      courseName:fields.courseName,
+      teacherId:fields.teacherId,
+      courseDate:fields.courseDate,
+      courseStartTime: fields.courseStartTime,
+      courseEndTime: fields.courseEndTime,
+      courseStartWeek:fields.courseStartWeek,
+      courseEndWeek:fields.courseEndWeek,
+      schoolYear:fields.schoolYear,
+      semester:fields.semester,
+      grade: fields.grade,
     });
     hide();
     message.success('添加成功');
@@ -33,20 +45,30 @@ const handleAdd = async (fields: FormValueType) => {
  * @param fields
  */
 const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('正在更新');
   try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+    await updateCourse({
+      courseId:fields.courseId,
+      classId: fields.classId,
+      classroomId:fields.classroomId,
+      courseName:fields.courseName,
+      teacherId:fields.teacherId,
+      courseDate:fields.courseDate,
+      courseStartTime: fields.courseStartTime,
+      courseEndTime: fields.courseEndTime,
+      courseStartWeek:fields.courseStartWeek,
+      courseEndWeek:fields.courseEndWeek,
+      schoolYear:fields.schoolYear,
+      semester:fields.semester,
+      grade: fields.grade,
     });
     hide();
 
-    message.success('配置成功');
+    message.success('更新成功');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('更新失败请重试！');
     return false;
   }
 };
@@ -59,9 +81,12 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
+    let courseIds = selectedRows.map(row => row.courseId);
+    for (let i=0;i<courseIds.length;i++) {
+      await removeCourse({
+        courseId: courseIds[i]
+      });
+    }
     hide();
     message.success('删除成功，即将刷新');
     return true;
@@ -80,43 +105,48 @@ const TableList: React.FC<{}> = () => {
   const columns: ProColumns<TableListItem>[] = [
     {
       title: '课程名',
-      dataIndex: 'name',
+      dataIndex: 'courseName',
     },
     {
-      title: '实验室',
-      dataIndex: 'desc',
+      title: '上课班级',
+      dataIndex: 'classId',
+    },
+    {
+      title: '所在教室',
+      dataIndex: 'classroomId',
     },
     {
       title: '任课老师',
-      dataIndex: 'desc',
+      dataIndex: 'teacherId',
+    },
+    {
+      title: '上课日期',
+      dataIndex: 'courseDate',
+      valueType: 'date',
     },
     {
       title: '上课时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
-      valueType: 'dateTime',
+      dataIndex: 'courseStartTime',
     },
     {
       title: '下课时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
-      valueType: 'dateTime',
+      dataIndex: 'courseEndTime',
     },
     {
       title: '开始周',
-      dataIndex: 'desc',
+      dataIndex: 'courseStartWeek',
     },
     {
       title: '结束周',
-      dataIndex: 'desc',
+      dataIndex: 'courseEndWeek',
     },
     {
       title: '学期',
-      dataIndex: 'desc',
+      dataIndex: 'schoolYear',
     },
     {
       title: '学年',
-      dataIndex: 'desc',
+      dataIndex: 'semester',
     },
     // {
     //   title: '调用次数',
@@ -165,7 +195,7 @@ const TableList: React.FC<{}> = () => {
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="courseId"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
@@ -196,12 +226,9 @@ const TableList: React.FC<{}> = () => {
         tableAlertRender={(selectedRowKeys, selectedRows) => (
           <div>
             已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
-            <span>
-              服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
-            </span>
           </div>
         )}
-        request={params => queryRule(params)}
+        request={params => queryCourse(params)}
         columns={columns}
         rowSelection={{}}
       />

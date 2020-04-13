@@ -1,17 +1,17 @@
 export interface TableListItem {
-  key: number;
-  disabled?: boolean;
-  href: string;
-  avatar: string;
-  name: string;
-  title: string;
-  owner: string;
-  desc: string;
-  callNo: number;
-  status: number;
-  updatedAt: Date;
-  createdAt: Date;
-  progress: number;
+  courseId: string;
+  classId: number;
+  classroomId: number;
+  courseName: string;
+  teacherId: string;
+  courseDate: Date;
+  courseStartTime: time;
+  courseEndTime: time;
+  courseStartWeek: string;
+  courseEndWeek: string;
+  schoolYear: string;
+  semester: string;
+  grade:string;
 }
 
 export interface TableListPagination {
@@ -26,11 +26,17 @@ export interface TableListData {
 }
 
 export interface TableListParams {
-  sorter?: string;
-  status?: string;
-  name?: string;
-  desc?: string;
-  key?: number;
-  pageSize?: number;
-  currentPage?: number;
+  courseId?: string;
+  classId?: number;
+  classroomId?: number;
+  courseName?: string;
+  teacherId?: string;
+  courseDate?: Date;
+  courseStartTime?: time;
+  courseEndTime?: time;
+  courseStartWeek?: string;
+  courseEndWeek?: string;
+  schoolYear?: string;
+  semester?: string;
+  grade?:string;
 }

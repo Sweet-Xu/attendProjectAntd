@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Modal } from 'antd';
+import { Form, Input, Modal,Radio } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -21,7 +21,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
   return (
     <Modal
       destroyOnClose
-      title="新建规则"
+      title="新增课程"
       visible={modalVisible}
       onOk={okHandle}
       onCancel={() => onCancel()}
@@ -30,9 +30,98 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="描述"
-          name="desc"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          label="上课班级"
+          name="classId"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="所在教室"
+          name="classroomId"
+          // rules={[{ required: true, message: '请输入数字！'}]} 要设置只能为整型数的规则
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="课程名称"
+          name="courseName"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="教师工号"
+          name="teacherId"
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="上课日期"
+          name="courseDate"
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="课程开始时间"
+          name="courseStartTime"
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="课程开始周"
+          name="courseStartWeek"
+        //  rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="课程结束周"
+          name="courseEndWeek"
+          //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="学年"
+          name="schoolYear"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="学期"
+          name="semester"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="年级"
+          name="grade"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>
