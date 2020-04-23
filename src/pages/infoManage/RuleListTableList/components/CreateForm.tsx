@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Input, Modal } from 'antd';
+import {DatePicker, Form, Input, Modal, TimePicker} from 'antd';
+import moment from "moment";
 
 const FormItem = Form.Item;
 
@@ -45,6 +46,16 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         >
           <Input placeholder="08:00:00" />
         </FormItem>
+        {/*<FormItem*/}
+        {/*  labelCol={{ span: 8 }}*/}
+        {/*  wrapperCol={{ span: 15 }}*/}
+        {/*  name="courseStartTime"*/}
+        {/*  label="课程开始时间"*/}
+        {/*  rules={[{ required: true, message: '请选择开始时间！' }]}*/}
+        {/*>*/}
+        {/*  <TimePicker format={'HH:mm:ss'} />*/}
+        {/*  /!*<TimePicker  format={moment().format(' HH:mm:ss')}/>*!/*/}
+        {/*</FormItem>*/}
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}

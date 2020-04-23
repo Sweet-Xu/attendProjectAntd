@@ -76,7 +76,7 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
       width={500}
       bodyStyle={{ padding: '20px 50px 48px 30px' }}
       destroyOnClose
-      title="规则配置"
+      title="更新考勤记录"
       visible={updateModalVisible}
       // footer={renderFooter()}
       onCancel={() => handleUpdateModalVisible(false, values)}
@@ -143,7 +143,8 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
          // rules={[{ required: true, message: '请输入如下格式:09:40:00', min: 8 }]}
         >
           {/*<TimePicker  defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} value={moment}/>*/}
-          <Input placeholder="09:40:00" />
+          {/*<Form.Item label="打卡时间" name="attendTime" noStyle><DatePicker/></Form.Item>*/}
+          <input placeholder=""/>
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}

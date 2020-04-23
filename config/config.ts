@@ -101,7 +101,7 @@ export default {
         {
           path: '/',
           component: '../layouts/BasicLayout',
-          authority: ['admin', 'user'],
+          authority: ['admin', 'user','guest'], //user是教师权限，guest是学生权限
           routes: [
             {
               path: '/',
@@ -132,6 +132,7 @@ export default {
               path: '/statisticalAnalysis',
               name: '统计分析',
               icon: 'crown',
+              authority: ['admin','user'],
               //component: './systemSetting',
               routes: [
                 {
@@ -152,14 +153,16 @@ export default {
               path: '/basicinfoManage',
               name: '基础信息',
               icon: 'crown',
+              authority: ['admin'],
               //component: './basicinfoManage',
               routes: [
-                {
-                  name: '用户管理',
-                  icon: 'smile',
-                  path: '/basicinfomanage/userlisttablelist',
-                  component: './basicInfoManage/Userlisttablelist',
-                },
+                // {
+                //   name: '用户管理',
+                //   icon: 'smile',
+                //   path: '/basicinfomanage/userlisttablelist',
+                //   component: './basicInfoManage/Userlisttablelist',
+                //   // authority: ['admin'],
+                // },
                 {
                   name: '学生管理',
                   icon: 'smile',
@@ -184,6 +187,12 @@ export default {
                   path: '/basicinfomanage/classlisttablelist',
                   component: './basicInfoManage/ClassListTableList',
                 },
+                {
+                  name: '日志管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/loglisttablelist',
+                  component: './basicInfoManage/LogListTableList',
+                },
               ],
             },
             {
@@ -191,6 +200,7 @@ export default {
               name: '考勤管理',
               icon: 'crown',
               //component: './systemSetting',
+              // authority: ['admin','user'],
               routes: [
                 {
                   name: '考勤表',
@@ -209,6 +219,7 @@ export default {
                   icon: 'smile',
                   path: '/infomanage/rulelisttablelist',
                   component: './infoManage/RuleListTableList',
+                  authority: ['admin'],
                 },
               ],
             },
@@ -237,12 +248,19 @@ export default {
               path: '/accountsettings',
               component: './AccountSettings',
             },
-            {
-              name: '空白页面',
-              icon: 'smile',
-              path: '/emptypage',
-              component: './EmptyPage',
-            }, // {
+            // {
+            //   name: '空白页面',
+            //   icon: 'smile',
+            //   path: '/emptypage',
+            //   component: './EmptyPage',
+            // },
+            // {
+            //   name: '基础表单',
+            //   icon: 'smile',
+            //   path: '/formbasicform',
+            //   component: './FormBasicForm',
+            // },
+            // {
             //   name: '查询表格',
             //   icon: 'smile',
             //   path: '/booktable',

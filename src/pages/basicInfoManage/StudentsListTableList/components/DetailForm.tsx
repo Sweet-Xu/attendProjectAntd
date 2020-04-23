@@ -4,13 +4,13 @@ import moment from 'moment';
 import { TableListItem } from '../data.d';
 
 export interface FormValueType extends Partial<TableListItem> {
-  teacherId?:string;
-  userId?: number;
-  deptName?:string;
-  teacherName?:string;
-  teacherGender?:string;
-  teacherEmail?:string;
-  teacherQQ?:string;
+  studentId?:string;
+  classId?: number;
+  studentName?:string;
+  studentGender?:string;
+  studentEmail?:string;
+  studentQQ?:string;
+  userId?:number;
 }
 
 export interface UpdateFormProps {
@@ -31,15 +31,15 @@ const formLayout = {
   wrapperCol: { span: 13 },
 };
 
-const UpdateForm: React.FC<UpdateFormProps> = props => {
+const DetailForm: React.FC<UpdateFormProps> = props => {
   const [formVals, setFormVals] = useState<FormValueType>({
-    teacherId:props.values.teacherId,
-    userId: props.values.userId,
-    deptName:props.values.deptName,
-    teacherName:props.values.teacherName,
-    teacherGender:props.values.teacherGender,
-    teacherEmail:props.values.teacherEmail,
-    teacherQQ:props.values.teacherQQ,
+    studentId:props.values.studentId,
+    classId: props.values.classId,
+    studentName:props.values.studentName,
+    studentGender:props.values.studentGender,
+    studentEmail:props.values.studentEmail,
+    studentQQ:props.values.studentQQ,
+    userId:props.values.userId,
   });
 
 //  const [currentStep, setCurrentStep] = useState<number>(0);
@@ -77,98 +77,100 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
 
   return (
     <Modal
-      width={500}
-      bodyStyle={{ padding: '1px 50px 48px 30px' }}
+      width={400}
+      bodyStyle={{ padding: '1px 50px 48px' }}
       destroyOnClose
-      title="更新教师信息"
+      title="查看学生信息"
       visible={updateModalVisible}
       // footer={renderFooter()}
       onCancel={() => handleUpdateModalVisible(false, values)}
-      //afterClose={() => handleUpdateModalVisible()}
-      onOk={okHandle}
+      //fterClose={() => handleUpdateModalVisible()}
+     // onOk={okHandle}
+      onOk={() => handleUpdateModalVisible(false, values)}
     >
-      {/*<Steps style={{ marginBottom: 28 }} size="small" current={currentStep}>*/}
-      {/*  <Step title="基本信息" />*/}
-      {/*  <Step title="配置规则属性" />*/}
-      {/*  <Step title="设定调度周期" />*/}
-      {/*</Steps>*/}
       <Form
         {...formLayout}
         form={form}
-        initialValues={{
-        teacherId:formVals.teacherId,
-        userId: formVals.userId,
-        deptName:formVals.deptName,
-        teacherName:formVals.teacherName,
-        teacherGender:formVals.teacherGender,
-        teacherEmail:formVals.teacherEmail,
-        teacherQQ:formVals.teacherQQ,
-      }}
+        // initialValues={{
+        //   studentId:formVals.studentId,
+        //   classId: formVals.classId,
+        //   studentName:formVals.studentName,
+        //   studentGender:formVals.studentGender,
+        //   studentEmail:formVals.studentEmail,
+        //   studentQQ:formVals.studentQQ,
+        //   userId:formVals.userId,
+        // }}
       >
         <FormItem name="userId">
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
-          label="教师工号"
-          name="teacherId"
+          label="学号"
+          name="studentId"
           //rules={[{ required: true, message: '请输入至少两个字符的规则描述！', min: 2 }]}
         >
-          <Input disabled />
+          {formVals.studentId}
+          {/*<Input disabled />*/}
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
-          label="所在部门"
-          name="deptName"
+          label="所在班级"
+          name="classId"
           //rules={[{ required: true, message: '请输入如下格式:08:00:00！', min: 8 }]}
         >
-          <Input placeholder="请输入" />
+          {/*<Input placeholder="请输入" />*/}
+          {formVals.classId}
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
-          label="教师姓名"
-          name="teacherName"
+          label="学生姓名"
+          name="studentName"
           // rules={[{ required: true, message: '请输入如下格式:09:40:00', min: 8 }]}
         >
           {/*<TimePicker  defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} value={moment}/>*/}
-          <Input placeholder="请输入" />
+          {/*<Input placeholder="请输入"disabled />*/}
+          {formVals.studentName}
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
           label="性别"
-          name="teacherGender"
+          name="studentGender"
           // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 8 }]}
         >
-          <Radio.Group >
-            <Radio value='1'>男</Radio>
-            <Radio value='0' >女</Radio>
-          </Radio.Group>
-
+          {formVals.studentGender==1?"男":"女"}
+          {/*<Radio.Group >*/}
+          {/*  <Radio value={1}>男</Radio>*/}
+          {/*  <Radio value={0} >女</Radio>*/}
+          {/*</Radio.Group>*/}
+          {/*<Input placeholder="07:30:00" />*/}
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
           label="电子邮箱"
-          name="teacherEmail"
+          name="studentEmail"
           //rules={[{ required: true, message: '请输入如下格式:08:00:00！', min: 8 }]}
         >
-          <Input placeholder="请输入" />
+          {/*<Input placeholder="请输入" disabled />*/}
+          {formVals.studentEmail}
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
           label="QQ号"
-          name="teacherQQ"
+          name="studentQQ"
           //rules={[{ required: true, message: '请输入如下格式:08:00:00！', min: 8 }]}
         >
-          <Input placeholder="请输入" />
+          {/*<Input placeholder="请输入" disabled/>*/}
+          {formVals.studentQQ}
         </FormItem>
       </Form>
     </Modal>
   );
 };
 
-export default UpdateForm;
+export default DetailForm;

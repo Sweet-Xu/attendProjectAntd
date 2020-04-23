@@ -191,13 +191,16 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
-                <Info title="我的待办" value="8个任务" bordered />
+                {/*<Info title="我的待办" value="8个任务" bordered />*/}
+                <Info title="未开始考勤表数" value="8个" bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="本周任务平均处理时间" value="32分钟" bordered />
+                {/*<Info title="本周任务平均处理时间" value="32分钟" bordered />*/}
+                <Info title="本周考勤表平均处理时间" value="150分钟" bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="本周完成任务数" value="24个任务" />
+                {/*<Info title="本周完成任务数" value="24个任务" />*/}
+                <Info title="本周完成考勤表数" value="10个" />
               </Col>
             </Row>
           </Card>

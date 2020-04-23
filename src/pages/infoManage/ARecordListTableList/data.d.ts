@@ -4,6 +4,7 @@ export interface TableListItem {
   studentId:number;
   attendTime:Date;
   attendResult:string;
+  attendName:string;
 }
 
 export interface TableListPagination {

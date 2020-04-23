@@ -29,8 +29,6 @@ export async function addTeacher(teacher: TableListParams) {
 }
 
 export async function updateTeacher(teacher: TableListParams) {
-  // console.log(attendItem)
-  // console.log(attendItem.ruleId)
   return request('/api/teacher', {
     method: 'Put',
     data: {

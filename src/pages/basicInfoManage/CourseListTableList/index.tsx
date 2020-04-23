@@ -123,6 +123,7 @@ const TableList: React.FC<{}> = () => {
       title: '上课日期',
       dataIndex: 'courseDate',
       valueType: 'date',
+      // render: (_, record) => {return record.courseDate}
     },
     {
       title: '上课时间',

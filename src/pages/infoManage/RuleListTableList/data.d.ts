@@ -3,10 +3,10 @@ import moment from "moment";
 export interface TableListItem {
   ruleId:number;
   ruleName:string;
-  courseStartTime:string;
-  courseEndTime:moment;
-  checkStartTime:string;
-  checkEndTime:string
+  courseStartTime:time;
+  courseEndTime:time;
+  checkStartTime:time;
+  checkEndTime:time
   normalLateMin:string;
   normalLeaveEarlyMin:string;
   normalInOutNum:string;
@@ -32,10 +32,10 @@ export interface TableListParams {
   // key?: number;
   ruleId?: number;
   ruleName?: string;
-  courseStartTime?: string;
-  courseEndTime?: string;
-  checkStartTime?: string;
-  checkEndTime?: string;
+  courseStartTime?: time;
+  courseEndTime?: time;
+  checkStartTime?: time;
+  checkEndTime?: time;
   normalLateMin?: string;
   normalLeaveEarlyMin?: string;
   normalInOutNum?: string;

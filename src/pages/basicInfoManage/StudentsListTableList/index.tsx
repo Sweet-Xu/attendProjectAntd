@@ -5,8 +5,10 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
+import DetailForm  from './components/DetailForm';
 import { TableListItem } from './data.d';
 import { queryStudent, updateStudent, addStudent, removeStudent } from './service';
+import {queryCurrent} from'@/services/user';
 
 /**
  * 添加节点
@@ -88,6 +90,15 @@ const TableList: React.FC<{}> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
+  const [stepFormValues2, setStepFormValues2] = useState({});
+  const [currentRole, setCurrentRole] = useState();
+  const [detailVisible,setDetailVisible] = useState<boolean>(false);
+  if(currentRole==null) {
+    queryCurrent().then(res=>{
+      console.log(res)
+      setCurrentRole(res.role)
+    })
+  }
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -124,14 +135,18 @@ const TableList: React.FC<{}> = () => {
       valueType: 'option',
       render: (_, record) => (
         <>
-          <a
+          {currentRole=='admin' &&   <a
             onClick={() => {
               handleUpdateModalVisible(true);
               setStepFormValues(record);
             }}
           >
             更新
-          </a>
+          </a>}
+          <a onClick={() => {
+            setDetailVisible(true);
+            setStepFormValues2(record);
+          }}> 查看</a>
           <Divider type="vertical" />
         </>
       ),
@@ -145,10 +160,10 @@ const TableList: React.FC<{}> = () => {
         actionRef={actionRef}
         rowKey="studentId"
         toolBarRender={(action, { selectedRows }) => [
-          <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
+          currentRole=='admin' &&(<Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
-          </Button>,
-          selectedRows && selectedRows.length > 0 && (
+          </Button>),
+          currentRole=='admin' && selectedRows && selectedRows.length > 0 && (
             <Dropdown
               overlay={
                 <Menu
@@ -161,7 +176,7 @@ const TableList: React.FC<{}> = () => {
                   selectedKeys={[]}
                 >
                   <Menu.Item key="remove">批量删除</Menu.Item>
-                  <Menu.Item key="approval">批量审批</Menu.Item>
+                  {/*<Menu.Item key="approval">批量审批</Menu.Item>*/}
                 </Menu>
               }
             >
@@ -197,26 +212,46 @@ const TableList: React.FC<{}> = () => {
         modalVisible={createModalVisible}
       />
       {stepFormValues && Object.keys(stepFormValues).length ? (
-        <UpdateForm
-          onSubmit={async value => {
-            const success = await handleUpdate(value);
-            if (success) {
-              handleModalVisible(false);
-              setStepFormValues({});
-              if (actionRef.current) {
-                actionRef.current.reload();
-              }
+    <UpdateForm
+      onSubmit={async value => {
+        const success = await handleUpdate(value);
+        if (success) {
+          handleModalVisible(false);
+          setStepFormValues({});
+          if (actionRef.current) {
+            actionRef.current.reload();
+          }
+        }
+      }}
+      onCancel={() => {
+        handleUpdateModalVisible(false);
+        setStepFormValues({});
+      }}
+      updateModalVisible={updateModalVisible}
+      values={stepFormValues}
+    />
+  ) : null}
+      {stepFormValues2 && Object.keys(stepFormValues2).length ? (
+      <DetailForm
+        onSubmit={async value => {
+          const success = await handleUpdate(value);
+          if (success) {
+            setDetailVisible(false);
+            setStepFormValues2({});
+            if (actionRef.current) {
+              actionRef.current.reload();
             }
-          }}
-          onCancel={() => {
-            handleUpdateModalVisible(false);
-            setStepFormValues({});
-          }}
-          updateModalVisible={updateModalVisible}
-          values={stepFormValues}
-        />
+          }
+        }}
+        onCancel={() => {
+          setDetailVisible(false);
+          setStepFormValues2({});
+        }}
+        updateModalVisible={detailVisible}
+        values={stepFormValues2}
+      />
       ) : null}
-    </PageHeaderWrapper>
+</PageHeaderWrapper>
   );
 };
 

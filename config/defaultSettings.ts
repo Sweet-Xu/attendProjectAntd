@@ -57,5 +57,5 @@ export default {
   },
   title: '实验室考勤系统',
   pwa: false,
-  iconfontUrl: './public/icons/pro_icon.svg',
+  iconfontUrl: '',
 } as DefaultSettings;

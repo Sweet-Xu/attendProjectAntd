@@ -138,8 +138,8 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
           // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 8 }]}
         >
           <Radio.Group >
-            <Radio value={1} >男</Radio>
-            <Radio value={0} >女</Radio>
+            <Radio value='1' >男</Radio>
+            <Radio value='0' >女</Radio>
           </Radio.Group>
           {/*<Input placeholder="07:30:00" />*/}
         </FormItem>

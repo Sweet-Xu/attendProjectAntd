@@ -53,14 +53,14 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           name="attendTime"
           //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
-          {/*<DatePicker*/}
-          {/*  style={{ width: '100%' }}*/}
-          {/*  //showTime*/}
-          {/*  showTime={{ format: 'HH:mm:ss' }}*/}
-          {/*  format="YYYY-MM-DD HH:mm:ss"*/}
-          {/*  placeholder="选择开始时间"*/}
-          {/*/>*/}
-          <Input placeholder="请输入" />
+          <DatePicker
+            // style={{ width: '100%' }}
+            showTime
+            // showTime={{ format: 'HH:mm:ss' }}
+            // format="YYYY-MM-DD HH:mm:ss"
+            placeholder="选择时间"
+          />
+          {/*<Input placeholder="请输入" />*/}
         </FormItem>
         <FormItem
           labelCol={{ span: 5 }}

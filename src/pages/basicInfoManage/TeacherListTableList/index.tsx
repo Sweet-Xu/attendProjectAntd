@@ -7,6 +7,7 @@ import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { queryTeacher, updateTeacher, addTeacher, removeTeacher } from './service';
+import DetailForm  from './components/DetailForm';
 
 /**
  * 添加节点
@@ -14,24 +15,24 @@ import { queryTeacher, updateTeacher, addTeacher, removeTeacher } from './servic
  */
 const handleAdd = async (fields: FormValueType) => {
   const hide = message.loading('正在添加');
-  try {
-    await addTeacher({
-      teacherId:fields.teacherId,
-      userId: fields.userId,
-      deptName:fields.deptName,
-      teacherName:fields.teacherName,
-      teacherGender:fields.teacherGender,
-      teacherEmail:fields.teacherEmail,
-      teacherQQ: fields.teacherQQ,
-    });
-    hide();
-    message.success('添加成功');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('添加失败请重试！');
-    return false;
-  }
+try {
+  await addTeacher({
+    teacherId:fields.teacherId,
+    userId: fields.userId,
+    deptName:fields.deptName,
+    teacherName:fields.teacherName,
+    teacherGender:fields.teacherGender,
+    teacherEmail:fields.teacherEmail,
+    teacherQQ: fields.teacherQQ,
+  });
+  hide();
+  message.success('添加成功');
+  return true;
+} catch (error) {
+  hide();
+  message.error('添加失败请重试！');
+  return false;
+}
 };
 
 /**
@@ -89,6 +90,7 @@ const TableList: React.FC<{}> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
+  const [detailVisible,setDetailVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -125,14 +127,18 @@ const TableList: React.FC<{}> = () => {
       valueType: 'option',
       render: (_, record) => (
         <>
-          <a
+          {(localStorage.getItem("role")==='admin'||localStorage.getItem("role")==='teacher') &&           <a
             onClick={() => {
               handleUpdateModalVisible(true);
               setStepFormValues(record);
             }}
           >
             更新
-          </a>
+          </a>}
+          <a onClick={() => {
+            setDetailVisible(true);
+            setStepFormValues(record);
+          }}> 查看</a>
           <Divider type="vertical" />
         </>
       ),
@@ -214,6 +220,26 @@ const TableList: React.FC<{}> = () => {
             setStepFormValues({});
           }}
           updateModalVisible={updateModalVisible}
+          values={stepFormValues}
+        />
+      ) : null}
+      {stepFormValues && Object.keys(stepFormValues).length ? (
+        <DetailForm
+          onSubmit={async value => {
+            const success = await handleUpdate(value);
+            if (success) {
+              setDetailVisible(false);
+              setStepFormValues({});
+              if (actionRef.current) {
+                actionRef.current.reload();
+              }
+            }
+          }}
+          onCancel={() => {
+            setDetailVisible(false);
+            setStepFormValues({});
+          }}
+          updateModalVisible={detailVisible}
           values={stepFormValues}
         />
       ) : null}

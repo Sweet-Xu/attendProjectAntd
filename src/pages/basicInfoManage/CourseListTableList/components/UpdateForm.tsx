@@ -163,7 +163,8 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
           name="courseDate"
           // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
-          <Input placeholder="请输入" />
+          <Input placeholder="请输入" type="date" pattern="yyyy-MM-dd" />
+          {/*  <DatePicker />*/}
         </FormItem>
         <FormItem
           labelCol={{ span: 5 }}

@@ -38,3 +38,5 @@ export async function updateStudent(student: TableListParams) {
     },
   });
 }
+
+

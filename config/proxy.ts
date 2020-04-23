@@ -7,41 +7,41 @@
  */
 export default {
   dev: {
-    '/api/attendRule': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/api/attendItem': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/api/teacher': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/api/user': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/api/student': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/api/classes': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/api/courseTable': {
-      target: 'http://localhost:8284',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
+  //   '/api/attendRule': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  //   },
+  //   '/api/attendItem': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  //   },
+  //   '/api/teacher': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  // },
+  //   '/api/user': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  //   },
+  //   '/api/student': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  //   },
+  //   '/api/classes': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  //   },
+  //   '/api/courseTable': {
+  //     target: 'http://localhost:8284',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^': '' },
+  //   },
     '/api': {
       target: 'http://localhost:8284',
       changeOrigin: true,

@@ -7,6 +7,7 @@ import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { queryAttendItem, updateAttendItem, addAttendItem, removeAttendItem } from './service';
+import {queryCurrent} from "@/services/user";
 
 /**
  * 添加节点
@@ -92,8 +93,8 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'attendItemId',
     },
     {
-      title: '所在考勤表编号',
-      dataIndex: 'attendId',
+      title: '所在考勤表',
+      dataIndex: 'attendName',
     },
     {
       title: '学生学号',
@@ -130,7 +131,7 @@ const TableList: React.FC<{}> = () => {
             更新
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          {/*<a href="">订阅警报</a>*/}
         </>
       ),
     },
@@ -172,11 +173,12 @@ const TableList: React.FC<{}> = () => {
         tableAlertRender={(selectedRowKeys, selectedRows) => (
           <div>
             已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
-            <span>
-              服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
-            </span>
+            {/*<span>*/}
+            {/*  服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万*/}
+            {/*</span>*/}
           </div>
         )}
+
         request={params => queryAttendItem(params)}
         columns={columns}
         rowSelection={{}}

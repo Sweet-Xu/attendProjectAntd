@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Modal,Radio } from 'antd';
+import {DatePicker, Form, Input, Modal, Radio} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -69,7 +69,14 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           name="courseDate"
          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
-          <Input placeholder="请输入" />
+          <DatePicker
+            // style={{ width: '100%' }}
+            //showTime
+            // showTime={{ format: 'HH:mm:ss' }}
+            // format="YYYY-MM-DD HH:mm:ss"
+            placeholder="选择时间"
+          />
+          {/*<Input placeholder="请输入" />*/}
         </FormItem>
         <FormItem
           labelCol={{ span: 5 }}
