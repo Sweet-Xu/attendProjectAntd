@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
+import { addAttendList, queryAttendList, removeFakeList, updateFakeList } from './service';
 
 import { BasicListItemDataType } from './data.d';
 
@@ -36,14 +36,14 @@ const Model: ModelType = {
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryFakeList, payload);
+      const response = yield call(queryAttendList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response) ? response : [],
       });
     },
     *appendFetch({ payload }, { call, put }) {
-      const response = yield call(queryFakeList, payload);
+      const response = yield call(queryAttendList, payload);
       yield put({
         type: 'appendList',
         payload: Array.isArray(response) ? response : [],
@@ -54,7 +54,7 @@ const Model: ModelType = {
       if (payload.id) {
         callback = Object.keys(payload).length === 1 ? removeFakeList : updateFakeList;
       } else {
-        callback = addFakeList;
+        callback = addAttendList;
       }
       const response = yield call(callback, payload); // post
       yield put({
