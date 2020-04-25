@@ -41,6 +41,8 @@ const OperationModal: FC<OperationModalProps> = props => {
   const handleSubmit = () => {
     if (!form) return;
     form.submit();
+    // e.preventDefault();
+    //form.resetFields();
   };
 
   const handleFinish = (values: { [key: string]: any }) => {
@@ -48,6 +50,9 @@ const OperationModal: FC<OperationModalProps> = props => {
       onSubmit(values as BasicListItemDataType);
     }
   };
+  // const modalFooter = done
+  //   ? { footer: null, onCancel: onDone }
+  //   : { okText: '保存', onOk: handleSubmit, onCancel };
 
   const modalFooter = done
     ? { footer: null, onCancel: onDone }
@@ -73,8 +78,8 @@ const OperationModal: FC<OperationModalProps> = props => {
       <Form {...formLayout} form={form} onFinish={handleFinish}>
         <Form.Item
           name="title"
-          label="任务名称"
-          rules={[{ required: true, message: '请输入任务名称' }]}
+          label="考勤表名称"
+          rules={[{ required: true, message: '请输入考勤表名称' }]}
         >
           <Input placeholder="请输入" />
         </Form.Item>
@@ -92,21 +97,33 @@ const OperationModal: FC<OperationModalProps> = props => {
         </Form.Item>
         <Form.Item
           name="owner"
-          label="任务负责人"
-          rules={[{ required: true, message: '请选择任务负责人' }]}
+          label="负责人"
+          rules={[{ required: true, message: '请选择负责人' }]}
         >
           <Select placeholder="请选择">
-            <Select.Option value="付晓晓">付晓晓</Select.Option>
-            <Select.Option value="周毛毛">周毛毛</Select.Option>
+            <Select.Option value="段喜龙">段喜龙</Select.Option>
+            <Select.Option value="徐甜">徐甜</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
           name="subDescription"
-          label="产品描述"
-          rules={[{ message: '请输入至少五个字符的产品描述！', min: 5 }]}
+          label="所在教室"
+          // rules={[{ message: '请输入至少五个字符的产品描述！', min: 5 }]}
+          rules={[{ required: true, message: '请选择负责人' }]}
         >
-          <TextArea rows={4} placeholder="请输入至少五个字符" />
+          <Select placeholder="请选择">
+          <Select.Option value="d301">d301</Select.Option>
+          <Select.Option value="d305">d305</Select.Option>
+          <Select.Option value="d306">d306</Select.Option>
+        </Select>
         </Form.Item>
+        {/*<Form.Item*/}
+        {/*  name="subDescription"*/}
+        {/*  label="考勤表描述"*/}
+        {/*  rules={[{ message: '请输入至少五个字符的产品描述！', min: 5 }]}*/}
+        {/*>*/}
+        {/*  <TextArea rows={4} placeholder="请输入至少五个字符" />*/}
+        {/*</Form.Item>*/}
       </Form>
     );
   };

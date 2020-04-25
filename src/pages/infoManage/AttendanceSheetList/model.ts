@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { addAttendList, queryAttendList, removeFakeList, updateFakeList } from './service';
+import { addAttendList, queryAttendList, removeAttendList, updateAttendList } from './service';
 
 import { BasicListItemDataType } from './data.d';
 
@@ -37,6 +37,7 @@ const Model: ModelType = {
   effects: {
     *fetch({ payload }, { call, put }) {
       const response = yield call(queryAttendList, payload);
+      console.log(response)
       yield put({
         type: 'queryList',
         payload: Array.isArray(response) ? response : [],
@@ -52,11 +53,12 @@ const Model: ModelType = {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 1 ? removeFakeList : updateFakeList;
+        callback = Object.keys(payload).length === 1 ? removeAttendList : updateAttendList;
       } else {
         callback = addAttendList;
       }
       const response = yield call(callback, payload); // post
+      console.log(response)
       yield put({
         type: 'queryList',
         payload: response,

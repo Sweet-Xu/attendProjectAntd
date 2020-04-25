@@ -64,22 +64,26 @@ export async function queryAttendList(params: ParamsType) {
   });
 }
 
-export async function removeAttendList(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
+export async function removeAttendList(params: { id: string}) {
+ // const { count = 5, ...restParams } = params;
   return request('/api/attend', {
-    method: 'POST',
-    params: {
-      count,
-    },
-    data: {
-      ...restParams,
-      method: 'delete',
-    },
+    method: 'Delete',
+    params,
+    // data: {
+    //   ...restParams,
+    //   method: 'delete',
+    // },
   });
 }
+// export async function removeTeacher(params: { teacherId: string}) {
+//   return request('/api/teacher', {
+//     method: 'DELETE',
+//     params,
+//   });
+// }
 
-export async function addAttendList(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
+export async function addAttendList(attend: ParamsType) {
+  const { count = 5, ...restParams } = attend;
   return request('/api/attend', {
     method: 'POST',
     params: {
@@ -95,7 +99,7 @@ export async function addAttendList(params: ParamsType) {
 export async function updateAttendList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
   return request('/api/attend', {
-    method: 'POST',
+    method: 'Put',
     params: {
       count,
     },
