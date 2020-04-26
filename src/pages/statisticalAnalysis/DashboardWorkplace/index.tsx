@@ -1,5 +1,5 @@
-import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
-import React, { Component } from 'react';
+import {Avatar, Card, Col, List, Skeleton, Row, Statistic, Button} from 'antd';
+import React, {Component, useState} from 'react';
 
 import { Dispatch } from 'redux';
 import { Link } from 'umi';
@@ -11,6 +11,9 @@ import { ModalState } from './model';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
 import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
+import ProfileBasic from './components/ProfileBasic';
+import Grid from "antd/es/card/Grid";
+import {ids} from "antd/es/_util/raf";
 
 const links = [
   {
@@ -52,6 +55,8 @@ interface DashboardWorkplaceProps {
 
 const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
   const loading = currentUser && Object.keys(currentUser).length;
+
+
   if (!loading) {
     return <Skeleton avatar paragraph={{ rows: 1 }} active />;
   }
@@ -74,6 +79,7 @@ const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser
     </div>
   );
 };
+
 
 const ExtraContent: React.FC<{}> = () => (
   <div className={styles.extraContent}>
@@ -137,6 +143,7 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
   };
 
   render() {
+
     const {
       currentUser,
       activities,
@@ -145,11 +152,14 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
       activitiesLoading,
       radarData,
     } = this.props;
+   // const [detailVisible,setDetailVisible] = useState<boolean>(false);
 
     if (!currentUser || !currentUser.userid) {
       return null;
     }
+
     return (
+      <div>
       <PageHeaderWrapper
         content={<PageHeaderContent currentUser={currentUser} />}
         extraContent={<ExtraContent />}
@@ -165,6 +175,18 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
               loading={projectLoading}
               bodyStyle={{ padding: 0 }}
             >
+
+              {/*<Button*/}
+              {/*  type="dashed"*/}
+              {/*  style={{ width: '100%', marginBottom: 8 }}*/}
+              {/*  onClick={showModal}*/}
+              {/* // ref={addBtn}*/}
+              {/*>*/}
+              {/*  /!*<PlusOutlined />*!/*/}
+              {/*  添加*/}
+              {/*</Button>*/}
+              {/*<Link innerRef={<ProfileBasic/>}测试跳转</Link>*/}
+
               {projectNotice.map(item => (
                 <Card.Grid className={styles.projectGrid} key={item.id}>
                   <Card bodyStyle={{ padding: 0 }} bordered={false}>
@@ -173,7 +195,11 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
                         <div className={styles.cardTitle}>
                           <Avatar size="small" src={item.logo} />
                           {/*<Link to={item.href}>{item.title}</Link>*/}
-                          <Link to="/infomanage/attendancesheetlist">{item.title}</Link>
+                          <Link to={
+                            {
+                              pathname:"/statisticalanalysis/profilebasic",
+                              state:{attendId:item.id}
+                          }}>{item.title}</Link>
                         </div>
                       }
                       description={item.description}
@@ -265,7 +291,11 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
           {/*  </Card>*/}
           {/*</Col>*/}
         </Row>
+
       </PageHeaderWrapper>
+      {/*<ProfileBasic />*/}
+      </div>
+
     );
   }
 }

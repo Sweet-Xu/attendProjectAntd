@@ -101,7 +101,8 @@ export default {
         {
           path: '/',
           component: '../layouts/BasicLayout',
-          authority: ['admin', 'user','guest'], //user是教师权限，guest是学生权限
+          authority: ['admin', 'user', 'guest'],
+          //user是教师权限，guest是学生权限
           routes: [
             {
               path: '/',
@@ -132,7 +133,7 @@ export default {
               path: '/statisticalAnalysis',
               name: '统计分析',
               icon: 'crown',
-              authority: ['admin','user'],
+              authority: ['admin', 'user'],
               //component: './systemSetting',
               routes: [
                 {
@@ -146,6 +147,12 @@ export default {
                   icon: 'smile',
                   path: '/statisticalanalysis/dashboardanalysis',
                   component: './statisticalAnalysis/DashboardAnalysis',
+                },
+                {
+                  // name: '基础详情页',
+                  // icon: 'smile',
+                  path: '/statisticalanalysis/profilebasic',
+                  component: './statisticalAnalysis/DashboardWorkplace/components/ProfileBasic',
                 },
               ],
             },
@@ -248,7 +255,8 @@ export default {
               path: '/accountsettings',
               component: './AccountSettings',
             },
-            // {
+
+ // {
             //   name: '空白页面',
             //   icon: 'smile',
             //   path: '/emptypage',
@@ -269,6 +277,7 @@ export default {
             {
               component: './404',
             },
+
           ],
         },
         {
