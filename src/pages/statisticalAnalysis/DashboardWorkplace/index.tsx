@@ -67,7 +67,8 @@ const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser
           ，祝你开心每一天！
         </div>
         <div>
-          {currentUser.title} |{currentUser.group}
+          {/*{currentUser.title} |{currentUser.group}*/}
+          {currentUser.role=="admin"?"管理员":"教师"}
         </div>
       </div>
     </div>
@@ -154,13 +155,13 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
         extraContent={<ExtraContent />}
       >
         <Row gutter={24}>
-          <Col xl={16} lg={24} md={24} sm={24} xs={24}>
+         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
             <Card
               className={styles.projectList}
               style={{ marginBottom: 24 }}
-              title="进行中的项目"
+              title="进行中的考勤单"
               bordered={false}
-              extra={<Link to="/">全部项目</Link>}
+              extra={<Link to="/infomanage/attendancesheetlist">全部考勤单</Link>}
               loading={projectLoading}
               bodyStyle={{ padding: 0 }}
             >
@@ -171,7 +172,8 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
                       title={
                         <div className={styles.cardTitle}>
                           <Avatar size="small" src={item.logo} />
-                          <Link to={item.href}>{item.title}</Link>
+                          {/*<Link to={item.href}>{item.title}</Link>*/}
+                          <Link to="/infomanage/attendancesheetlist">{item.title}</Link>
                         </div>
                       }
                       description={item.description}
@@ -188,11 +190,29 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
                 </Card.Grid>
               ))}
             </Card>
+            {/*<Card*/}
+            {/*  bodyStyle={{ padding: 0 }}*/}
+            {/*  bordered={false}*/}
+            {/*  className={styles.activeCard}*/}
+            {/*  title="动态"*/}
+            {/*  loading={activitiesLoading}*/}
+            {/*>*/}
+            {/*  <List<ActivitiesType>*/}
+            {/*    loading={activitiesLoading}*/}
+            {/*    renderItem={item => this.renderActivities(item)}*/}
+            {/*    dataSource={activities}*/}
+            {/*    className={styles.activitiesList}*/}
+            {/*    size="large"*/}
+            {/*  />*/}
+            {/*</Card>*/}
+          </Col>
+          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
             <Card
               bodyStyle={{ padding: 0 }}
               bordered={false}
+              extra={<Link to="/infomanage/arecordlisttablelist">全部考勤记录</Link>}
               className={styles.activeCard}
-              title="动态"
+              title="考勤动态"
               loading={activitiesLoading}
             >
               <List<ActivitiesType>
@@ -204,45 +224,46 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
               />
             </Card>
           </Col>
-          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              style={{ marginBottom: 24 }}
-              title="快速开始 / 便捷导航"
-              bordered={false}
-              bodyStyle={{ padding: 0 }}
-            >
-              <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
-            </Card>
-            <Card
-              style={{ marginBottom: 24 }}
-              bordered={false}
-              title="XX 指数"
-              loading={radarData.length === 0}
-            >
-              <div className={styles.chart}>
-                <Radar hasLegend height={343} data={radarData} />
-              </div>
-            </Card>
-            <Card
-              bodyStyle={{ paddingTop: 12, paddingBottom: 12 }}
-              bordered={false}
-              title="团队"
-              loading={projectLoading}
-            >
-              <div className={styles.members}>
-                <Row gutter={48}>
-                  {projectNotice.map(item => (
-                    <Col span={12} key={`members-item-${item.id}`}>
-                      <Link to={item.href}>
-                        <Avatar src={item.logo} size="small" />
-                        <span className={styles.member}>{item.member}</span>
-                      </Link>
-                    </Col>
-                  ))}
-                </Row>
-              </div>
-            </Card>
-          </Col>
+
+          {/*<Col xl={8} lg={24} md={24} sm={24} xs={24}>*/}
+          {/*  <Card*/}
+          {/*    style={{ marginBottom: 24 }}*/}
+          {/*    title="快速开始 / 便捷导航"*/}
+          {/*    bordered={false}*/}
+          {/*    bodyStyle={{ padding: 0 }}*/}
+          {/*  >*/}
+          {/*    <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />*/}
+          {/*  </Card>*/}
+          {/*  <Card*/}
+          {/*    style={{ marginBottom: 24 }}*/}
+          {/*    bordered={false}*/}
+          {/*    title="XX 指数"*/}
+          {/*    loading={radarData.length === 0}*/}
+          {/*  >*/}
+          {/*    <div className={styles.chart}>*/}
+          {/*      <Radar hasLegend height={343} data={radarData} />*/}
+          {/*    </div>*/}
+          {/*  </Card>*/}
+          {/*  <Card*/}
+          {/*    bodyStyle={{ paddingTop: 12, paddingBottom: 12 }}*/}
+          {/*    bordered={false}*/}
+          {/*    title="团队"*/}
+          {/*    loading={projectLoading}*/}
+          {/*  >*/}
+          {/*    <div className={styles.members}>*/}
+          {/*      <Row gutter={48}>*/}
+          {/*        {projectNotice.map(item => (*/}
+          {/*          <Col span={12} key={`members-item-${item.id}`}>*/}
+          {/*            <Link to={item.href}>*/}
+          {/*              <Avatar src={item.logo} size="small" />*/}
+          {/*              <span className={styles.member}>{item.member}</span>*/}
+          {/*            </Link>*/}
+          {/*          </Col>*/}
+          {/*        ))}*/}
+          {/*      </Row>*/}
+          {/*    </div>*/}
+          {/*  </Card>*/}
+          {/*</Col>*/}
         </Row>
       </PageHeaderWrapper>
     );

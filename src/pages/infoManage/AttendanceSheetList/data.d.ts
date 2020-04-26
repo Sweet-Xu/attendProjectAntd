@@ -30,4 +30,5 @@ export interface BasicListItemDataType {
   message: number;
   content: string;
   members: Member[];
+  attendStatus:string;
 }

@@ -15,3 +15,21 @@ export async function fakeChartData() {
 export async function queryCurrent() {
   return request('/api/currentUser');
 }
+
+//下面是用到的
+export async function queryCurrentUser() {
+  return request('/api/user/currentUser');
+}
+
+export async function queryProgressAttend() {
+  return request('/api/attend/progressList');
+}
+
+
+// export async function queryAttendList(params: ParamsType) {
+//   console.log(params)
+//   return request('/api/attend', {
+//     method: 'GET',
+//     params,
+//   });
+// }

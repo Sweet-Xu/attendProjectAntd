@@ -1,7 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
-import { fakeChartData, queryActivities, queryCurrent, queryProjectNotice } from './service';
+import { fakeChartData, queryActivities, queryCurrentUser, queryProgressAttend } from './service';
 
 export interface ModalState {
   currentUser?: CurrentUser;
@@ -47,7 +47,7 @@ const Model: ModelType = {
       yield put({ type: 'fetchChart' });
     },
     *fetchUserCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
+      const response = yield call(queryCurrentUser);
       yield put({
         type: 'save',
         payload: {
@@ -56,7 +56,7 @@ const Model: ModelType = {
       });
     },
     *fetchProjectNotice(_, { call, put }) {
-      const response = yield call(queryProjectNotice);
+      const response = yield call(queryProgressAttend);
       yield put({
         type: 'save',
         payload: {

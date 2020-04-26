@@ -107,7 +107,7 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
     showSizeChanger: true,
     showQuickJumper: true,
     pageSize: 10,
-    total: 10,
+    total: 20,
   };
 
   const showModal = () => {
