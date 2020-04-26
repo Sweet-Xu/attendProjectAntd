@@ -84,6 +84,56 @@ const OperationModal: FC<OperationModalProps> = props => {
           <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item
+          name="classId"
+          label="考勤班级"
+          rules={[{ required: true, message: '请选择考勤班级名' }]}
+        >
+          <Select placeholder="请选择">
+            <Select.Option value="162013">162013</Select.Option>
+            <Select.Option value="162014">162014</Select.Option>
+            <Select.Option value="162015">162015</Select.Option>
+            <Select.Option value="162021">162021</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          name="courseName"
+          label="考勤课程"
+          rules={[{ required: true, message: '请选择所要考勤的课程' }]}
+        >
+          <Select placeholder="请选择">
+            <Select.Option value="1">程序设计</Select.Option>
+            <Select.Option value="2">数据结构</Select.Option>
+            <Select.Option value="3">软件工程</Select.Option>
+            <Select.Option value="4">软件建模</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          name="ruleName"
+          label="考勤规则"
+          rules={[{ required: true, message: '请选择遵守的考勤规则' }]}
+        >
+          <Select placeholder="请选择">
+            <Select.Option value="1">(通用)上午第一节课</Select.Option>
+            <Select.Option value="2">(通用)上午第二节课</Select.Option>
+            <Select.Option value="3">(春季)下午第一节课</Select.Option>
+            <Select.Option value="4">(春季)下午第二节课</Select.Option>
+            <Select.Option value="5">(秋季)下午第一节课</Select.Option>
+            <Select.Option value="6">(秋季)下午第二节课</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          name="classroomId"
+          label="考勤教室"
+          // rules={[{ message: '请输入至少五个字符的产品描述！', min: 5 }]}
+          rules={[{ required: true, message: '请选择考勤教室' }]}
+        >
+          <Select placeholder="请选择">
+            <Select.Option value="d301">d301</Select.Option>
+            <Select.Option value="d305">d305</Select.Option>
+            <Select.Option value="d306">d306</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
           name="createdAt"
           label="开始时间"
           rules={[{ required: true, message: '请选择开始时间' }]}
@@ -105,18 +155,7 @@ const OperationModal: FC<OperationModalProps> = props => {
             <Select.Option value="徐甜">徐甜</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item
-          name="subDescription"
-          label="所在教室"
-          // rules={[{ message: '请输入至少五个字符的产品描述！', min: 5 }]}
-          rules={[{ required: true, message: '请选择负责人' }]}
-        >
-          <Select placeholder="请选择">
-          <Select.Option value="d301">d301</Select.Option>
-          <Select.Option value="d305">d305</Select.Option>
-          <Select.Option value="d306">d306</Select.Option>
-        </Select>
-        </Form.Item>
+
         {/*<Form.Item*/}
         {/*  name="subDescription"*/}
         {/*  label="考勤表描述"*/}
@@ -130,7 +169,7 @@ const OperationModal: FC<OperationModalProps> = props => {
 
   return (
     <Modal
-      title={done ? null : `任务${current ? '编辑' : '添加'}`}
+      title={done ? null : `考勤表${current ? '编辑' : '添加'}`}
       className={styles.standardListForm}
       width={640}
       bodyStyle={done ? { padding: '72px 0' } : { padding: '28px 0 0' }}

@@ -192,8 +192,8 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
 
   return (
     <Modal
-      width={450}
-      bodyStyle={{ padding: '10px 50px 48px 100px' }}
+      width={500}
+      bodyStyle={{ padding: '32px 1px 48px 80px' }}
       destroyOnClose
       title="规则配置"
       visible={updateModalVisible}

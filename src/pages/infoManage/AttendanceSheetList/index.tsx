@@ -48,13 +48,29 @@ const Info: FC<{
 );
 
 const ListContent = ({
-  data: { owner, createdAt, percent, status },
+  data: {classId, courseName,ruleName,classroomId,owner, createdAt, percent, status },
 }: {
   data: BasicListItemDataType;
 }) => (
   <div className={styles.listContent}>
     <div className={styles.listContentItem}>
-      <span>Owner</span>
+      <span >考勤班级</span>
+      <p>{classId}</p>
+    </div>
+    <div className={styles.listContentItem}>
+      <span >考勤课程</span>
+      <p>{courseName}</p>
+    </div>
+    <div className={styles.listContentItem}>
+      <span>考勤规则</span>
+      <p>{ruleName}</p>
+    </div>
+    <div className={styles.listContentItem}>
+      <span>考勤教室</span>
+      <p>{classroomId}</p>
+    </div>
+    <div className={styles.listContentItem}>
+      <span >负责人</span>
       <p>{owner}</p>
     </div>
     <div className={styles.listContentItem}>
@@ -90,8 +106,8 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
-    pageSize: 5,
-    total: 50,
+    pageSize: 10,
+    total: 10,
   };
 
   const showModal = () => {
@@ -188,23 +204,22 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
     <div>
       <PageHeaderWrapper>
         <div className={styles.standardList}>
-          <Card bordered={false}>
-            <Row>
-              <Col sm={8} xs={24}>
-                {/*<Info title="我的待办" value="8个任务" bordered />*/}
-                <Info title="未开始考勤表数" value="8个" bordered />
-              </Col>
-              <Col sm={8} xs={24}>
-                {/*<Info title="本周任务平均处理时间" value="32分钟" bordered />*/}
-                <Info title="本周考勤表平均处理时间" value="150分钟" bordered />
-              </Col>
-              <Col sm={8} xs={24}>
-                {/*<Info title="本周完成任务数" value="24个任务" />*/}
-                <Info title="本周完成考勤表数" value="10个" />
-              </Col>
-            </Row>
-          </Card>
-
+          {/*<Card bordered={false}>*/}
+          {/*  <Row>*/}
+          {/*    <Col sm={8} xs={24}>*/}
+          {/*      /!*<Info title="我的待办" value="8个任务" bordered />*!/*/}
+          {/*      <Info title="未开始考勤表数" value="8个" bordered />*/}
+          {/*    </Col>*/}
+          {/*    <Col sm={8} xs={24}>*/}
+          {/*      /!*<Info title="本周任务平均处理时间" value="32分钟" bordered />*!/*/}
+          {/*      <Info title="正在进行中的考勤表数" value="6个" bordered />*/}
+          {/*    </Col>*/}
+          {/*    <Col sm={8} xs={24}>*/}
+          {/*      /!*<Info title="本周完成任务数" value="24个任务" />*!/*/}
+          {/*      <Info title="本周完成考勤表数" value="10个" />*/}
+          {/*    </Col>*/}
+          {/*  </Row>*/}
+          {/*</Card>*/}
           <Card
             className={styles.listCard}
             bordered={false}

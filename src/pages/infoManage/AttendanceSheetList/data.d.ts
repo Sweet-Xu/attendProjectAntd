@@ -6,6 +6,10 @@ export interface Member {
 
 export interface BasicListItemDataType {
   id: string;
+  classId:string,
+  courseName:string,
+  ruleName:string,
+  classroomId:string,
   owner: string;
   title: string;
   avatar: string;
