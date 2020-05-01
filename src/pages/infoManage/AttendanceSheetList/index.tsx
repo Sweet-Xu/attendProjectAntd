@@ -24,6 +24,7 @@ import OperationModal from './components/OperationModal';
 import { StateType } from './model';
 import { BasicListItemDataType } from './data.d';
 import styles from './style.less';
+import {Link} from "umi";
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -261,7 +262,12 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
                 >
                   <List.Item.Meta
                     avatar={<Avatar src={item.logo} shape="square" size="large" />}
-                    title={<a href={item.href} >{item.title}</a>}
+                    // title={<a href={item.href} >{item.title}</a>}
+                    title={<Link to={
+                      {
+                        pathname:"/statisticalanalysis/profilebasic",
+                        state:{attendId:item.id}
+                      }}>{item.title}</Link>}
                     description={item.subDescription}
                   />
                   <ListContent data={item} />
