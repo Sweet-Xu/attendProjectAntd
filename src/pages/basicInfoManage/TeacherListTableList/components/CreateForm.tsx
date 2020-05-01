@@ -73,7 +73,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           wrapperCol={{ span: 15 }}
           label="电子邮箱"
           name="teacherEmail"
-          rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
+         // rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>
@@ -82,7 +82,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         wrapperCol={{ span: 15 }}
         label="QQ号"
         name="teacherQQ"
-        rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
+        //rules={[{ required: true, message: '请输入至少2个字符的规则描述！', min: 2 }]}
       >
         <Input placeholder="请输入" />
       </FormItem>

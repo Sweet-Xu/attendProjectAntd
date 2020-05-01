@@ -41,7 +41,7 @@ const Model: ModelType = {
       yield put({
         type: 'queryList',
         payload: Array.isArray(response) ? response : [],
-      });
+    });
     },
     *appendFetch({ payload }, { call, put }) {
       const response = yield call(queryAttendList, payload);

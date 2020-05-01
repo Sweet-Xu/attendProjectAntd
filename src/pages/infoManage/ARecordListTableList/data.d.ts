@@ -2,6 +2,7 @@ export interface TableListItem {
   attendItemId:number;
   attendId:number;
   studentId:number;
+  studentName:string;
   attendTime:Date;
   attendResult:string;
   attendName:string;
@@ -22,6 +23,7 @@ export interface TableListParams {
   attendItemId?:number;
   attendId?:number;
   studentId?:number;
+  studentName?:string;
   attendTime?:Date;
   attendResult?:string;
 }

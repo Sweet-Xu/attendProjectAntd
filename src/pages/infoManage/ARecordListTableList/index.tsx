@@ -101,6 +101,10 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'studentId',
     },
     {
+      title: '学生姓名',
+      dataIndex: 'studentName',
+    },
+    {
       title: '打卡时间',
       dataIndex: 'attendTime',
       sorter: true,

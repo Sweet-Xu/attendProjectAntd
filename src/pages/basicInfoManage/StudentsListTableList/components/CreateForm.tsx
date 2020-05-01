@@ -63,7 +63,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         >
           <Radio.Group>
             <Radio value={1}>男</Radio>
-            <Radio value={2}>女</Radio>
+            <Radio value={0}>女</Radio>
           </Radio.Group>
         </FormItem>
         <FormItem
@@ -71,7 +71,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           wrapperCol={{ span: 15 }}
           label="电子邮箱"
           name="studentEmail"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>
@@ -80,7 +80,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           wrapperCol={{ span: 15 }}
           label="QQ号"
           name="studentQQ"
-          rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
         </FormItem>

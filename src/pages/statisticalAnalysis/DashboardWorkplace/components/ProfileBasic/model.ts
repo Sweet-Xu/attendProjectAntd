@@ -26,9 +26,20 @@ const Model: ModelType = {
     basicGoods: [],
   },
 
+  // effects: {
+  //   *fetchBasic(_, { call, put }) {
+  //     const response = yield call(queryBasicProfile);
+  //     yield put({
+  //       type: 'show',
+  //       payload: response,
+  //     });
+  //   },
+  // },
+
   effects: {
-    *fetchBasic(_, { call, put }) {
-      const response = yield call(queryBasicProfile);
+    *fetchBasic({ payload }, { call, put }) {
+      const response = yield call(queryBasicProfile,payload);
+      console.log("payload:"+payload);
       yield put({
         type: 'show',
         payload: response,
