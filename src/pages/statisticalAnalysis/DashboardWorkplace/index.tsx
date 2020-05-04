@@ -81,19 +81,19 @@ const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser
 };
 
 
-const ExtraContent: React.FC<{}> = () => (
-  <div className={styles.extraContent}>
-    <div className={styles.statItem}>
-      <Statistic title="项目数" value={56} />
-    </div>
-    <div className={styles.statItem}>
-      <Statistic title="团队内排名" value={8} suffix="/ 24" />
-    </div>
-    <div className={styles.statItem}>
-      <Statistic title="项目访问" value={2223} />
-    </div>
-  </div>
-);
+// const ExtraContent: React.FC<{}> = () => (
+  // <div className={styles.extraContent}>
+  //   <div className={styles.statItem}>
+  //     <Statistic title="项目数" value={56} />
+  //   </div>
+  //   <div className={styles.statItem}>
+  //     <Statistic title="团队内排名" value={8} suffix="/ 24" />
+  //   </div>
+  //   <div className={styles.statItem}>
+  //     <Statistic title="项目访问" value={2223} />
+  //   </div>
+  // </div>
+// );
 
 class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
   componentDidMount() {
@@ -162,7 +162,7 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
       <div>
       <PageHeaderWrapper
         content={<PageHeaderContent currentUser={currentUser} />}
-        extraContent={<ExtraContent />}
+       // extraContent={<ExtraContent />}
       >
         <Row gutter={24}>
          <Col xl={16} lg={24} md={24} sm={24} xs={24}>

@@ -107,13 +107,13 @@ export default {
             {
               path: '/',
               redirect: '/welcome',
-            },
-            {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
             }, // {
+            //   path: '/welcome',
+            //   name: 'welcome',
+            //   icon: 'smile',
+            //   component: './Welcome',
+            // },
+            // {
             //   path: '/admin',
             //   name: 'admin',
             //   icon: 'crown',
@@ -153,6 +153,12 @@ export default {
                   // icon: 'smile',
                   path: '/statisticalanalysis/profilebasic',
                   component: './statisticalAnalysis/DashboardWorkplace/components/ProfileBasic',
+                },
+                {
+                  name: '个人考勤报表',
+                  icon: 'smile',
+                  path: '/statisticalanalysis/personreportlist',
+                  component: './statisticalAnalysis/personReportList',
                 },
               ],
             },
@@ -216,6 +222,12 @@ export default {
                   component: './infoManage/AttendanceSheetList',
                 },
                 {
+                  // name: '基础详情页',
+                  // icon: 'smile',
+                  path: '/infomanage/profilebasic',
+                  component: './infoManage/AttendanceSheetList/components/ProfileBasic',
+                },
+                {
                   name: '考勤记录',
                   icon: 'smile',
                   path: '/infomanage/arecordlisttablelist',
@@ -230,33 +242,32 @@ export default {
                 },
               ],
             },
-            {
-              path: '/systemSetting',
-              name: '系统设置',
-              icon: 'crown',
-              //component: './systemSetting',
-              routes: [
-                // {
-                //   name: '基础表单',
-                //   icon: 'smile',
-                //   path: '/systemsetting/formbasicform',
-                //   component: './systemSetting/FormBasicForm',
-                // },
-              ],
-            }, // {
+         // {
+            //   path: '/systemSetting',
+            //   name: '系统设置',
+            //   icon: 'crown',
+            //   //component: './systemSetting',
+            //   routes: [
+            //     // {
+            //     //   name: '基础表单',
+            //     //   icon: 'smile',
+            //     //   path: '/systemsetting/formbasicform',
+            //     //   component: './systemSetting/FormBasicForm',
+            //     // },
+            //   ],
+            // }, // {
             //   name: 'list.table-list',
             //   icon: 'table',
             //   path: '/list',
             //   component: './ListTableList',
             // },
-            {
-              name: '个人设置',
-              icon: 'smile',
-              path: '/accountsettings',
-              component: './AccountSettings',
-            },
-
- // {
+            // {
+            //   name: '个人设置',
+            //   icon: 'smile',
+            //   path: '/accountsettings',
+            //   component: './AccountSettings',
+            // },
+            // {
             //   name: '空白页面',
             //   icon: 'smile',
             //   path: '/emptypage',
@@ -277,7 +288,6 @@ export default {
             {
               component: './404',
             },
-
           ],
         },
         {

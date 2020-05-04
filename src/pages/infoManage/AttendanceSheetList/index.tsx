@@ -265,7 +265,7 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
                     // title={<a href={item.href} >{item.title}</a>}
                     title={<Link to={
                       {
-                        pathname:"/statisticalanalysis/profilebasic",
+                        pathname:"/infomanage/profilebasic",
                         state:{attendId:item.id}
                       }}>{item.title}</Link>}
                     description={item.subDescription}

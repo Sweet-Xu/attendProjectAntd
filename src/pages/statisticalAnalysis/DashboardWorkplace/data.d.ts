@@ -114,7 +114,6 @@ export interface ActivitiesType {
     name: string;
     link: string;
   };
-
   template: string;
 }
 

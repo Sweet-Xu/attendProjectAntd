@@ -24,6 +24,6 @@ export interface TableListParams {
   attendId?:number;
   studentId?:number;
   studentName?:string;
-  attendTime?:Date;
-  attendResult?:string;
+  // attendTime?:Date;
+  // attendResult?:string;
 }
