@@ -297,20 +297,13 @@ class ProfileBasic extends Component<
             <PlusOutlined />
             导出
           </Button>
-          {/*<Divider style={{ marginBottom: 32 }} />*/}
-          {/*<Descriptions title="退款申请" style={{ marginBottom: 32 }}>*/}
-          {/*  <Descriptions.Item label="取货单号">1000000000</Descriptions.Item>*/}
-          {/*  <Descriptions.Item label="状态">已取货</Descriptions.Item>*/}
-          {/*  <Descriptions.Item label="销售单号">1234123421</Descriptions.Item>*/}
-          {/*  <Descriptions.Item label="子订单">3214321432</Descriptions.Item>*/}
-          {/*</Descriptions>*/}
-          {/*<Divider style={{ marginBottom: 32 }} />*/}
           <Descriptions title="考勤表" style={{ marginBottom: 32 }} >
             <Descriptions.Item label="名称">{this.state?.attendTitle.attendName}</Descriptions.Item>
             <Descriptions.Item label="课程">{this.state?.attendTitle.courseName}</Descriptions.Item>
             <Descriptions.Item label="班级">{this.state?.attendTitle.classId}</Descriptions.Item>
             <Descriptions.Item label="教室">{this.state?.attendTitle.classroomId}</Descriptions.Item>
             <Descriptions.Item label="教师">{this.state?.attendTitle.teacherName}</Descriptions.Item>
+            <Descriptions.Item label="规则">{this.state?.attendTitle.ruleName}</Descriptions.Item>
           </Descriptions>
           <Divider style={{ marginBottom: 32 }} />
 

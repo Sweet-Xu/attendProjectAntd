@@ -45,4 +45,5 @@ export interface AttendTitle {
   classId:number;
   classroomId:string;
   teacherName:string;
+  ruleName:string;
 }

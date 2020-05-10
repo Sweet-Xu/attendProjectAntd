@@ -49,7 +49,7 @@ const Login: React.FC<LoginProps> = props => {
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
           {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+            <LoginMessage content="账户或密码错误" />
           )}
 
           <UserName
@@ -119,10 +119,10 @@ const Login: React.FC<LoginProps> = props => {
         </div>
         <Submit loading={submitting}>登录</Submit>
         <div className={styles.other}>
-          其他登录方式
-          <AlipayCircleOutlined className={styles.icon} />
-          <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
+          {/*其他登录方式*/}
+          {/*<AlipayCircleOutlined className={styles.icon} />*/}
+          {/*<TaobaoCircleOutlined className={styles.icon} />*/}
+          {/*<WeiboCircleOutlined className={styles.icon} />*/}
           <Link className={styles.register} to="/user/register">
             注册账户
           </Link>

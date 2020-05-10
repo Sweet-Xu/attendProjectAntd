@@ -21,7 +21,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
   return (
     <Modal
       destroyOnClose
-      title="添加班级"
+      title="添加设备"
       visible={modalVisible}
       onOk={okHandle}
       onCancel={() => onCancel()}
@@ -30,8 +30,8 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="班级号"
-          name="classId"
+          label="摄像机内码"
+          name="cameraCode"
           //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
 
@@ -40,9 +40,9 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="所属学院"
-          name="collegeName"
-         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          label="所在教室"
+          name="classroomId"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
 
           <Input placeholder="请输入" />
@@ -50,8 +50,8 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="教师工号"
-          name="teacherId"
+          label="ip地址"
+          name="cameraIp"
           //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
 
@@ -60,9 +60,9 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
-          label="班级总人数"
-          name="classPeopleNum"
-         // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          label="端口号"
+          name="cameraPort"
+          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
 
           <Input placeholder="请输入" />

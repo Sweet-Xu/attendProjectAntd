@@ -106,7 +106,7 @@ export default {
           routes: [
             {
               path: '/',
-              redirect: '/welcome',
+              redirect: '/statisticalanalysis/dashboardworkplace',
             }, // {
             //   path: '/welcome',
             //   name: 'welcome',
@@ -131,7 +131,7 @@ export default {
             // },
             {
               path: '/statisticalAnalysis',
-              name: '统计分析',
+              name: '欢迎',
               icon: 'crown',
               authority: ['admin', 'user'],
               //component: './systemSetting',
@@ -141,13 +141,12 @@ export default {
                   icon: 'smile',
                   path: '/statisticalanalysis/dashboardworkplace',
                   component: './statisticalAnalysis/DashboardWorkplace',
-                },
-                {
-                  name: '分析页',
-                  icon: 'smile',
-                  path: '/statisticalanalysis/dashboardanalysis',
-                  component: './statisticalAnalysis/DashboardAnalysis',
-                },
+                }, // {
+                //   name: '分析页',
+                //   icon: 'smile',
+                //   path: '/statisticalanalysis/dashboardanalysis',
+                //   component: './statisticalAnalysis/DashboardAnalysis',
+                // },
                 {
                   // name: '基础详情页',
                   // icon: 'smile',
@@ -155,10 +154,10 @@ export default {
                   component: './statisticalAnalysis/DashboardWorkplace/components/ProfileBasic',
                 },
                 {
-                  name: '个人考勤报表',
+                  name: '统计分析',
                   icon: 'smile',
-                  path: '/statisticalanalysis/personreportlist',
-                  component: './statisticalAnalysis/personReportList',
+                  path: '/statisticalanalysis/analysispage',
+                  component: './statisticalAnalysis/analysisPage',
                 },
               ],
             },
@@ -200,11 +199,17 @@ export default {
                   path: '/basicinfomanage/classlisttablelist',
                   component: './basicInfoManage/ClassListTableList',
                 },
+                // {
+                //   name: '日志管理',
+                //   icon: 'smile',
+                //   path: '/basicinfomanage/loglisttablelist',
+                //   component: './basicInfoManage/LogListTableList',
+                // },
                 {
-                  name: '日志管理',
+                  name: '设备管理',
                   icon: 'smile',
-                  path: '/basicinfomanage/loglisttablelist',
-                  component: './basicInfoManage/LogListTableList',
+                  path: '/basicinfomanage/cameralisttablelist',
+                  component: './basicInfoManage/CameraListTableList',
                 },
               ],
             },
@@ -242,7 +247,7 @@ export default {
                 },
               ],
             },
-         // {
+        // {
             //   path: '/systemSetting',
             //   name: '系统设置',
             //   icon: 'crown',

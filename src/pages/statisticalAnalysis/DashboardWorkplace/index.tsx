@@ -166,6 +166,7 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
       >
         <Row gutter={24}>
          <Col xl={16} lg={24} md={24} sm={24} xs={24}>
+         {/*<Col>*/}
             <Card
               className={styles.projectList}
               style={{ marginBottom: 24 }}
@@ -216,21 +217,6 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
                 </Card.Grid>
               ))}
             </Card>
-            {/*<Card*/}
-            {/*  bodyStyle={{ padding: 0 }}*/}
-            {/*  bordered={false}*/}
-            {/*  className={styles.activeCard}*/}
-            {/*  title="动态"*/}
-            {/*  loading={activitiesLoading}*/}
-            {/*>*/}
-            {/*  <List<ActivitiesType>*/}
-            {/*    loading={activitiesLoading}*/}
-            {/*    renderItem={item => this.renderActivities(item)}*/}
-            {/*    dataSource={activities}*/}
-            {/*    className={styles.activitiesList}*/}
-            {/*    size="large"*/}
-            {/*  />*/}
-            {/*</Card>*/}
           </Col>
           <Col xl={8} lg={24} md={24} sm={24} xs={24}>
             <Card

@@ -43,7 +43,7 @@ export interface DefaultSettings {
 }
 
 export default {
-  navTheme: 'dark',
+  navTheme: 'dark' ,
   // 拂晓蓝
   primaryColor: '#1890ff',
   layout: 'sidemenu',
@@ -55,7 +55,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: '实验室考勤系统',
+  title: '实验课考勤系统',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;

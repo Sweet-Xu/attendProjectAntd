@@ -109,3 +109,11 @@ export async function updateAttendList(params: ParamsType) {
     },
   });
 }
+
+//推送考勤结果
+export async function publishResult(attend: ParamsType) {
+  return request('/api/mailMessageCode', {
+    method: 'POST',
+    data: attend,
+  });
+}

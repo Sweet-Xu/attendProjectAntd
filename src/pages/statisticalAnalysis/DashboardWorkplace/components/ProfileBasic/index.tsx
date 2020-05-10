@@ -311,6 +311,7 @@ class ProfileBasic extends Component<
             <Descriptions.Item label="班级">{this.state?.attendTitle.classId}</Descriptions.Item>
             <Descriptions.Item label="教室">{this.state?.attendTitle.classroomId}</Descriptions.Item>
             <Descriptions.Item label="教师">{this.state?.attendTitle.teacherName}</Descriptions.Item>
+            <Descriptions.Item label="规则">{this.state?.attendTitle.ruleName}</Descriptions.Item>
           </Descriptions>
           <Divider style={{ marginBottom: 32 }} />
 

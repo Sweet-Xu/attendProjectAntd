@@ -25,6 +25,7 @@ import { StateType } from './model';
 import { BasicListItemDataType } from './data.d';
 import styles from './style.less';
 import {Link} from "umi";
+import {publishResult} from "@/pages/infoManage/AttendanceSheetList/service";
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -49,7 +50,7 @@ const Info: FC<{
 );
 
 const ListContent = ({
-  data: {classId, courseName,ruleName,classroomId,owner, createdAt, percent, status },
+  data: {classId, courseName,ruleName,classroomId,owner, createdAt,attendStatus, percent, status },
 }: {
   data: BasicListItemDataType;
 }) => (
@@ -79,8 +80,12 @@ const ListContent = ({
       <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
     </div>
     <div className={styles.listContentItem}>
-      <Progress percent={percent} status={status} strokeWidth={6} style={{ width: 180 }} />
+      <span >状态</span>
+      <p>{attendStatus}</p>
     </div>
+    {/*<div className={styles.listContentItem}>*/}
+    {/*  <Progress percent={percent} status={status} strokeWidth={6} style={{ width: 180 }} />*/}
+    {/*</div>*/}
   </div>
 );
 
@@ -143,11 +148,11 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
 
   const extraContent = (
     <div className={styles.extraContent}>
-      <RadioGroup defaultValue="all">
-        <RadioButton value="all">全部</RadioButton>
-        <RadioButton value="progress">进行中</RadioButton>
-        <RadioButton value="waiting">等待中</RadioButton>
-      </RadioGroup>
+      {/*<RadioGroup defaultValue="all">*/}
+      {/*  <RadioButton value="all">全部</RadioButton>*/}
+      {/*  <RadioButton value="progress">进行中</RadioButton>*/}
+      {/*  <RadioButton value="waiting">等待中</RadioButton>*/}
+      {/*</RadioGroup>*/}
       <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
     </div>
   );
@@ -257,6 +262,11 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
                     >
                       编辑
                     </a>,
+                    <a onClick={()=>{
+                      console.log(item.id)
+                      publishResult(item).then(res=>                      alert("推送成功"))
+
+                    }}>推送结果</a>,
                     <MoreBtn key="more" item={item} />,
                   ]}
                 >
