@@ -165,8 +165,8 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
        // extraContent={<ExtraContent />}
       >
         <Row gutter={24}>
-         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-         {/*<Col>*/}
+         {/*<Col xl={16} lg={24} md={24} sm={24} xs={24}>*/}
+         <Col>
             <Card
               className={styles.projectList}
               style={{ marginBottom: 24 }}
@@ -218,24 +218,24 @@ class DashboardWorkplace extends Component<DashboardWorkplaceProps> {
               ))}
             </Card>
           </Col>
-          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              bodyStyle={{ padding: 0 }}
-              bordered={false}
-              extra={<Link to="/infomanage/arecordlisttablelist">全部考勤记录</Link>}
-              className={styles.activeCard}
-              title="考勤动态"
-              loading={activitiesLoading}
-            >
-              <List<ActivitiesType>
-                loading={activitiesLoading}
-                renderItem={item => this.renderActivities(item)}
-                dataSource={activities}
-                className={styles.activitiesList}
-                size="large"
-              />
-            </Card>
-          </Col>
+          {/*<Col xl={8} lg={24} md={24} sm={24} xs={24}>*/}
+          {/*  <Card*/}
+          {/*    bodyStyle={{ padding: 0 }}*/}
+          {/*    bordered={false}*/}
+          {/*    extra={<Link to="/infomanage/arecordlisttablelist">全部考勤记录</Link>}*/}
+          {/*    className={styles.activeCard}*/}
+          {/*    title="考勤动态"*/}
+          {/*    loading={activitiesLoading}*/}
+          {/*  >*/}
+          {/*    <List<ActivitiesType>*/}
+          {/*      loading={activitiesLoading}*/}
+          {/*      renderItem={item => this.renderActivities(item)}*/}
+          {/*      dataSource={activities}*/}
+          {/*      className={styles.activitiesList}*/}
+          {/*      size="large"*/}
+          {/*    />*/}
+          {/*  </Card>*/}
+          {/*</Col>*/}
 
           {/*<Col xl={8} lg={24} md={24} sm={24} xs={24}>*/}
           {/*  <Card*/}

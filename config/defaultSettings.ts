@@ -46,6 +46,7 @@ export default {
   navTheme: 'dark' ,
   // 拂晓蓝
   primaryColor: '#1890ff',
+ // primaryColor: '#66CCFF',
   layout: 'sidemenu',
   contentWidth: 'Fluid',
   fixedHeader: false,

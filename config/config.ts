@@ -266,12 +266,12 @@ export default {
             //   path: '/list',
             //   component: './ListTableList',
             // },
-            // {
-            //   name: '个人设置',
-            //   icon: 'smile',
-            //   path: '/accountsettings',
-            //   component: './AccountSettings',
-            // },
+            {
+              name: '个人设置',
+              icon: 'crown',
+              path: '/accountsettings',
+              component: './AccountSettings',
+            },
             // {
             //   name: '空白页面',
             //   icon: 'smile',
