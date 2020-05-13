@@ -264,7 +264,8 @@ export const AttendanceSheetList: FC<AttendanceSheetListProps> = props => {
                     </a>,
                     <a onClick={()=>{
                       console.log(item.id)
-                      publishResult(item).then(res=>                      alert("推送成功"))
+                      publishResult(item).then(res=>
+                        alert("推送成功"))
 
                     }}>推送结果</a>,
                     <MoreBtn key="more" item={item} />,

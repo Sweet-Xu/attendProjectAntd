@@ -6,7 +6,9 @@ import { TableListItem } from '../data.d';
 export interface FormValueType extends Partial<TableListItem> {
   attendItemId?:number;
   attendId?:number;
+  attendName?:string;
   studentId?:number;
+  studentName?:string;
   attendTime?:Date;
   attendResult?:string;
 }
@@ -33,7 +35,9 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
   const [formVals, setFormVals] = useState<FormValueType>({
     attendItemId:props.values.attendItemId,
     attendId: props.values.attendId,
+    attendName:props.values.attendName,
     studentId:props.values.studentId,
+    studentName:props.values.studentName,
     attendTime:props.values.attendTime,
     attendResult:props.values.attendResult,
   });
@@ -94,7 +98,9 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
         initialValues={{
           attendItemId:formVals.attendItemId,
           attendId: formVals.attendId,
+          attendName:formVals.attendName,
           studentId:formVals.studentId,
+          studentName:formVals.studentName,
           attendTime:formVals.attendTime,
           attendResult:formVals.attendResult,
         }}
@@ -104,8 +110,17 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
-          label="考勤表编号"
+          label="所在考勤表编号"
           name="attendId"
+          //rules={[{ required: true, message: '请输入至少两个字符的规则描述！', min: 2 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 15 }}
+          label="考勤表名称"
+          name="attendName"
           //rules={[{ required: true, message: '请输入至少两个字符的规则描述！', min: 2 }]}
         >
           <Input placeholder="请输入" />
@@ -117,24 +132,17 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
           name="studentId"
           //rules={[{ required: true, message: '请输入如下格式:08:00:00！', min: 8 }]}
         >
-          <Input placeholder="08:00:00" />
+          <Input placeholder="请输入" />
         </FormItem>
-
-        {/*<FormItem*/}
-        {/*  labelCol={{ span: 8 }}*/}
-        {/*  wrapperCol={{ span: 15 }}*/}
-        {/*  name="courseStartTime"*/}
-        {/*  label="课程开始时间"*/}
-        {/*  rules={[{ required: true, message: '请选择开始时间！' }]}*/}
-        {/*>*/}
-        {/*  <DatePicker*/}
-        {/*    style={{ width: '100%' }}*/}
-        {/*    showTime*/}
-        {/*    format="HH:mm:ss"*/}
-        {/*    placeholder="选择开始时间"*/}
-        {/*  />*/}
-        {/*</FormItem>*/}
-
+        <FormItem
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 15 }}
+          label="学生姓名"
+          name="studentName"
+          //rules={[{ required: true, message: '请输入如下格式:08:00:00！', min: 8 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
         <FormItem
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 15 }}
@@ -145,6 +153,11 @@ const UpdateForm: React.FC<UpdateFormProps> = props => {
           {/*<TimePicker  defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} value={moment}/>*/}
           {/*<Form.Item label="打卡时间" name="attendTime" noStyle><DatePicker/></Form.Item>*/}
           <input placeholder=""/>
+          {/*<DatePicker*/}
+          {/*  showTime*/}
+          {/*  placeholder="请选择"*/}
+          {/*  style={{ width: '100%' }}*/}
+          {/*/>*/}
         </FormItem>
         <FormItem
           labelCol={{ span: 8 }}

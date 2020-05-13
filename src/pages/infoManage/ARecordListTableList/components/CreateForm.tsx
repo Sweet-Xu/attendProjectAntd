@@ -1,5 +1,5 @@
 import React from 'react';
-import {DatePicker, Form, Input, Modal} from 'antd';
+import {DatePicker, Form, Input, Modal, Select} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -38,10 +38,28 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           <Input placeholder="请输入" />
         </FormItem>
         <FormItem
+            labelCol={{ span: 5 }}
+            wrapperCol={{ span: 15 }}
+            label="考勤表名称"
+            name="attendName"
+            // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+          >
+            <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 15 }}
           label="学生学号"
           name="studentId"
+          //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
+        >
+          <Input placeholder="请输入" />
+        </FormItem>
+        <FormItem
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 15 }}
+          label="学生姓名"
+          name="studentName"
           //rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
           <Input placeholder="请输入" />
@@ -69,7 +87,13 @@ const CreateForm: React.FC<CreateFormProps> = props => {
           name="attendResult"
          // rules={[{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}
         >
-          <Input placeholder="请输入" />
+          {/*<Input placeholder="请输入" />*/}
+          <Select placeholder="请选择">
+            <Select.Option value="正常">正常</Select.Option>
+            <Select.Option value="迟到">迟到</Select.Option>
+            <Select.Option value="早退">早退</Select.Option>
+            <Select.Option value="旷课">旷课</Select.Option>
+          </Select>
         </FormItem>
       </Form>
     </Modal>

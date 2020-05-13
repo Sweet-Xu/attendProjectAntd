@@ -19,7 +19,9 @@ const handleAdd = async (fields: FormValueType) => {
     await addAttendItem({
       attendItemId:fields.attendItemId,
       attendId:fields.attendId,
+      attendName:fields.attendName,
       studentId:fields.studentId,
+      studentName:fields.studentName,
       attendTime:fields.attendTime,
       attendResult:fields.attendResult,
     });
@@ -88,12 +90,16 @@ const TableList: React.FC<{}> = () => {
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
+    // {
+    //   title: '考勤记录编号',
+    //   dataIndex: 'attendItemId',
+    // },
     {
-      title: '考勤记录编号',
-      dataIndex: 'attendItemId',
+      title: '所在考勤表编号',
+      dataIndex: 'attendId',
     },
     {
-      title: '所在考勤表',
+      title: '考勤表名称',
       dataIndex: 'attendName',
     },
     {
@@ -114,10 +120,10 @@ const TableList: React.FC<{}> = () => {
       title: '考勤结果',
       dataIndex: 'attendResult',
       valueEnum: {
-        0: { text: '迟到', status: 'Default' },
-        1: { text: '正常', status: 'Processing' },
-        2: { text: '早退', status: 'Success' },
-        3: { text: '旷课', status: 'Error' },
+        迟到: { text: '迟到', status: 'Default' },
+        正常: { text: '正常', status: 'Processing' },
+        早退: { text: '早退', status: 'Success' },
+        旷课: { text: '旷课', status: 'Error' },
       },
     },
     {
@@ -164,7 +170,6 @@ const TableList: React.FC<{}> = () => {
                   selectedKeys={[]}
                 >
                   <Menu.Item key="remove">批量删除</Menu.Item>
-                  <Menu.Item key="approval">批量审批</Menu.Item>
                 </Menu>
               }
             >
