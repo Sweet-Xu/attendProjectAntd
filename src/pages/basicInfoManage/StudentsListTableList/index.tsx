@@ -1,5 +1,5 @@
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Dropdown, Menu, message } from 'antd';
+import {Button, Divider, Dropdown, Menu, message, Upload} from 'antd';
 import React, { useState, useRef } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
@@ -9,6 +9,9 @@ import DetailForm  from './components/DetailForm';
 import { TableListItem } from './data.d';
 import { queryStudent, updateStudent, addStudent, removeStudent } from './service';
 import {queryCurrent} from'@/services/user';
+import styles from "@/pages/AccountSettings/components/BaseView.less";
+import {FormattedMessage} from "umi-plugin-react/locale";
+import {UploadOutlined} from "@ant-design/icons/lib";
 
 /**
  * 添加节点
@@ -153,8 +156,32 @@ const TableList: React.FC<{}> = () => {
     },
   ];
 
+  const importStudnetProps = {
+    method:'post',
+    type:"file",
+    name: 'file',
+    action: 'http://localhost:8284/api/student/importStudent',
+    enctype:"multipart/form-data",
+    // headers: {
+    //   authorization: 'authorization-text',
+    // },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
   return (
     <PageHeaderWrapper>
+      {/*<form action="http://localhost:8284/api/student/importStudent" method="post" enctype="multipart/form-data"  target="nm_iframe">*/}
+      {/*  <input type="file" name="file" /><input type="submit" value="提交" />*/}
+      {/*</form>*/}
+      {/*<iframe id="id_iframe" name="nm_iframe" style={{display:'none'}}></iframe>*/}
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
@@ -163,6 +190,13 @@ const TableList: React.FC<{}> = () => {
           currentRole=='admin' &&(<Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             新建
           </Button>),
+          currentRole=='admin' &&(
+            <Upload showUploadList={false} {...importStudnetProps}>
+              <Button>
+                <UploadOutlined /> 导入
+              </Button>
+            </Upload>
+          ),
           currentRole=='admin' && selectedRows && selectedRows.length > 0 && (
             <Dropdown
               overlay={

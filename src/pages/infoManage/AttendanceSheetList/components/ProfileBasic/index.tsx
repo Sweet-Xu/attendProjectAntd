@@ -165,14 +165,6 @@ class ProfileBasic extends Component<
           <Divider style={{ marginBottom: 32 }} />
 
           <div className={styles.title}>签到情况</div>
-          {/*<Table*/}
-          {/*  style={{ marginBottom: 24 }}*/}
-          {/*  pagination={false}*/}
-          {/*  loading={loading}*/}
-          {/*  dataSource={goodsData}*/}
-          {/*  columns={goodsColumns}*/}
-          {/*  rowKey="id"*/}
-          {/*/>*/}
           <Table
             style={{ marginBottom: 24 }}
             pagination={false}
