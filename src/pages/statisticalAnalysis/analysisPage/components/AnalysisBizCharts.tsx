@@ -17,6 +17,7 @@ import {
 import DataSet from '@antv/data-set';
 import { Select } from 'antd';
 import {queryClassAnalysis, queryStudentAnalysis} from "@/pages/statisticalAnalysis/analysisPage/service";
+import {queryStudent} from "@/pages/basicInfoManage/StudentsListTableList/service";
 
 const { Option } = Select;
 
@@ -37,7 +38,8 @@ class AnalysisBizCharts extends React.Component {
       }, {
         "item": "旷课",
         "count": "100"
-      }]
+      }],
+      optionList:[]
     }
     this.handleChange = this.handleChange.bind(this);//手动绑定
   }
@@ -47,7 +49,13 @@ class AnalysisBizCharts extends React.Component {
     queryStudentAnalysis({id:this.state.currentStudent}).then(res=>{
       this.setState({...this.state,data:res})
     })
-
+    queryStudent().then(res=>{
+      let students = res.data;
+     // <Option value="16201307">16201307</Option>
+      let temp = students.map(item=><Option value={item.studentId}>{item.studentId}</Option>)
+      this.setState({...this.state,optionList:temp})
+     // console.log(temp)
+    })
   }
    handleChange(value) {
      queryStudentAnalysis({id:value.value}).then(res=>{
@@ -101,10 +109,11 @@ class AnalysisBizCharts extends React.Component {
           style={{ width: 120 }}
           onChange={this.handleChange}
         >
-          <Option value="16201303">16201303</Option>
-          <Option value="16201301">16201301</Option>
-          <Option value="16201302">16201302</Option>
-          <Option value="16201307">16201307</Option>
+          {this.state.optionList}
+          {/*<Option value="16201303">16201303</Option>*/}
+          {/*<Option value="16201301">16201301</Option>*/}
+          {/*<Option value="16201302">16201302</Option>*/}
+          {/*<Option value="16201307">16201307</Option>*/}
         </Select>
         <Chart
         bu  height={800}

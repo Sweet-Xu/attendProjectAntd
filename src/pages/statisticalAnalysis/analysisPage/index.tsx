@@ -5,8 +5,8 @@ import styles from './index.less';
 import AnalysisBizCharts from "@/pages/statisticalAnalysis/analysisPage/components/AnalysisBizCharts";
 import { Tabs } from 'antd';
 import Final from "@/pages/statisticalAnalysis/analysisPage/components/Final";
-import {queryClassAnalysis} from "@/pages/statisticalAnalysis/analysisPage/service";
 import CourseFinal from "@/pages/statisticalAnalysis/analysisPage/components/CourseFinal";
+import Test from "@/pages/statisticalAnalysis/analysisPage/components/Test";
 
 const { TabPane } = Tabs;
 
@@ -197,6 +197,9 @@ export default () => {
         </TabPane>
         <TabPane tab="学生" key="student">
           <AnalysisBizCharts />
+        </TabPane>
+        <TabPane tab="测试" key="test">
+         <Test />
         </TabPane>
       </Tabs>
 

@@ -199,12 +199,12 @@ export default {
                   path: '/basicinfomanage/classlisttablelist',
                   component: './basicInfoManage/ClassListTableList',
                 },
-                // {
-                //   name: '日志管理',
-                //   icon: 'smile',
-                //   path: '/basicinfomanage/loglisttablelist',
-                //   component: './basicInfoManage/LogListTableList',
-                // },
+                {
+                  name: '日志管理',
+                  icon: 'smile',
+                  path: '/basicinfomanage/loglisttablelist',
+                  component: './basicInfoManage/LogListTableList',
+                },
                 {
                   name: '设备管理',
                   icon: 'smile',

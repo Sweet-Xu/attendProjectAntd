@@ -31,8 +31,7 @@ class CourseFinal extends React.Component {
       this.setState({data:res})
     })
 
-  }
-
+}
   render() {
    const data = this.state.data;
     const ds = new DataSet();
